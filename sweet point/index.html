@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Point - Кондитерская</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">Sweet Point</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item dropdown">
+                            <a href="catalog.html" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
+                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
+                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
+                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
+                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="promotions.html" class="nav-link">Акции</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="about.html" class="dropdown-item">О нас</a>
+                                <a href="contacts.html" class="dropdown-item">Контакты</a>
+                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu dropdown">
+                        <button class="user-button">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item">
+                                <i class="fas fa-sign-in-alt"></i> Войти
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="cart.html" class="dropdown-item">
+                                <i class="fas fa-shopping-cart"></i> Корзина
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="container">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="catalog.html" class="mobile-nav-link">Каталог</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="catalog.html">Весь ассортимент</a></li>
+                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
+                        <li><a href="catalog.html?category=cakes">Торты</a></li>
+                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
+                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">О нас</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contacts.html" class="mobile-nav-link">Контакты</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="delivery.html" class="mobile-nav-link">Доставка и оплата</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="login.html" class="mobile-nav-link">Войти</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="profile.html" class="mobile-nav-link">Мой профиль</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="badge">Новинка</span>
+                        <h1>Sweet Point</h1>
+                        <p>Кондитерская с любовью к сладостям. У нас вкусно и точка!</p>
+                        <div class="hero-buttons">
+                            <a href="catalog.html" class="btn btn-primary">Перейти в каталог</a>
+                            <a href="promotions.html" class="btn btn-outline">Акции и скидки</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/hero-cake.jpg" alt="Торты и десерты Sweet Point">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Категории -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Категории</h2>
+                    <p>Выберите категорию и найдите то, что вам по вкусу</p>
+                </div>
+                <div class="categories-grid">
+                    <a href="catalog.html?category=desserts" class="category-card">
+                        <div class="category-image">
+                            <img src="images/category-desserts.jpg" alt="Десерты">
+                            <div class="category-overlay">
+                                <h3>Десерты</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="catalog.html?category=cakes" class="category-card">
+                        <div class="category-image">
+                            <img src="images/category-cakes.jpg" alt="Торты">
+                            <div class="category-overlay">
+                                <h3>Торты</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="catalog.html?category=pastry" class="category-card">
+                        <div class="category-image">
+                            <img src="images/category-pastry.jpg" alt="Выпечка">
+                            <div class="category-overlay">
+                                <h3>Выпечка</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="catalog.html?category=pies" class="category-card">
+                        <div class="category-image">
+                            <img src="images/category-pies.jpg" alt="Пироги">
+                            <div class="category-overlay">
+                                <h3>Пироги</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные товары -->
+        <section class="popular-products">
+            <div class="container">
+                <div class="section-header-with-link">
+                    <div>
+                        <h2>Популярные товары</h2>
+                        <p>Самые любимые десерты наших клиентов</p>
+                    </div>
+                    <a href="catalog.html" class="see-all">Все товары <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/product-cake.jpg" alt="Торт Клубничный">
+                            <div class="product-badges"></div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                            <h3 class="product-title">Торт Клубничный</h3>
+                            <div class="product-price">
+                                <span class="price">1200 ₽</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/product-eclair.jpg" alt="Эклеры шоколадные">
+                            <div class="product-badges"></div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                            <h3 class="product-title">Эклеры шоколадные</h3>
+                            <div class="product-price">
+                                <span class="price">350 ₽</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/product-croissant.jpg" alt="Круассан классический">
+                            <div class="product-badges">
+                                <span class="badge badge-new">Новинка</span>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                            <h3 class="product-title">Круассан классический</h3>
+                            <div class="product-price">
+                                <span class="price">180 ₽</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/product-pie.jpg" alt="Пирог с яблоками">
+                            <div class="product-badges">
+                                <span class="badge badge-discount">-15%</span>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                            <h3 class="product-title">Пирог с яблоками</h3>
+                            <div class="product-price">
+                                <span class="price">550 ₽</span>
+                                <span class="old-price">650 ₽</span>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-see-all">
+                    <a href="catalog.html" class="btn btn-outline btn-full">Смотреть все товары</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Почему выбирают нас</h2>
+                    <p>Sweet Point - это качество, вкус и забота о каждом клиенте</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cookie-bite"></i>
+                        </div>
+                        <h3>Натуральные ингредиенты</h3>
+                        <p>Мы используем только свежие и натуральные продукты для наших десертов</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Сделано с любовью</h3>
+                        <p>Каждый десерт готовится с заботой и вниманием к деталям</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h3>Индивидуальный подход</h3>
+                        <p>Возможность заказать десерты по вашему рецепту и вкусу</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Акции -->
+        <section class="promotions">
+            <div class="container">
+                <div class="section-header">
+                    <span class="badge badge-outline">Специальное предложение</span>
+                    <h2>Акции и скидки</h2>
+                    <p>Не пропустите наши специальные предложения</p>
+                </div>
+                <div class="promotions-grid">
+                    <div class="promotion-card">
+                        <div class="promotion-image">
+                            <img src="images/promo-cakes.jpg" alt="Скидка на торты">
+                            <span class="badge badge-discount">-20%</span>
+                        </div>
+                        <div class="promotion-content">
+                            <h3>Скидка на все торты</h3>
+                            <p>Скидка 20% на все торты по выходным</p>
+                            <a href="promotions.html" class="btn btn-outline">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="promotion-card">
+                        <div class="promotion-image">
+                            <img src="images/promo-gift.jpg" alt="Подарок при заказе">
+                            <span class="badge badge-accent">Подарок</span>
+                        </div>
+                        <div class="promotion-content">
+                            <h3>Подарок при заказе</h3>
+                            <p>Получите подарок при заказе от 2000 рублей</p>
+                            <a href="promotions.html" class="btn btn-outline">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Sweet Point</h3>
+                    <p class="footer-description">Кондитерская с любовью к сладостям и выпечке</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Навигация</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="promotions.html" class="footer-link">Акции</a>
+                        <a href="about.html" class="footer-link">О нас</a>
+                        <a href="contacts.html" class="footer-link">Контакты</a>
+                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="login.html" class="footer-link">Войти</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sweetpoint.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Sweet Point. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Раскрытие подменю в мобильной версии
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            if (link.nextElementSibling && link.nextElementSibling.classList.contains('mobile-submenu')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

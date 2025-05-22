@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - Sweet Point</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">Sweet Point</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item dropdown">
+                            <a href="catalog.html" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
+                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
+                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
+                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
+                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="promotions.html" class="nav-link">Акции</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="about.html" class="dropdown-item">О нас</a>
+                                <a href="contacts.html" class="dropdown-item">Контакты</a>
+                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <div class="user-menu dropdown">
+                        <button class="user-button">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item">
+                                <i class="fas fa-sign-in-alt"></i> Войти
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="cart.html" class="dropdown-item">
+                                <i class="fas fa-shopping-cart"></i> Корзина
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="container">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="catalog.html" class="mobile-nav-link">Каталог</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="catalog.html">Весь ассортимент</a></li>
+                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
+                        <li><a href="catalog.html?category=cakes">Торты</a></li>
+                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
+                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">О нас</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contacts.html" class="mobile-nav-link">Контакты</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="delivery.html" class="mobile-nav-link">Доставка и оплата</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="login.html" class="mobile-nav-link">Войти</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="profile.html" class="mobile-nav-link">Мой профиль</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Корзина</h1>
+                <p>Ваши товары в корзине</p>
+            </div>
+
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="images/product-cake.jpg" alt="Торт Клубничный">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>Торт Клубничный</h3>
+                            <p class="cart-item-price">Цена: 1200 ₽</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-btn plus">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="cart-item-total">
+                            <p>1200 ₽</p>
+                        </div>
+                        <button class="cart-item-remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="images/product-croissant.jpg" alt="Круассан классический">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>Круассан классический</h3>
+                            <p class="cart-item-price">Цена: 180 ₽</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn plus">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="cart-item-total">
+                            <p>360 ₽</p>
+                        </div>
+                        <button class="cart-item-remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="cart-summary-card">
+                        <h3>Итого</h3>
+                        <div class="summary-row">
+                            <span>Сумма</span>
+                            <span>1560 ₽</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Доставка</span>
+                            <span>300 ₽</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Итого к оплате</span>
+                            <span>1860 ₽</span>
+                        </div>
+                        <button class="btn btn-primary btn-full">Оформить заказ</button>
+                        <a href="catalog.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-shopping-bag"></i> Продолжить покупки
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Sweet Point</h3>
+                    <p class="footer-description">Кондитерская с любовью к сладостям и выпечке</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Навигация</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="promotions.html" class="footer-link">Акции</a>
+                        <a href="about.html" class="footer-link">О нас</a>
+                        <a href="contacts.html" class="footer-link">Контакты</a>
+                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="login.html" class="footer-link">Войти</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sweetpoint.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Sweet Point. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Раскрытие подменю в мобильной версии
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            if (link.nextElementSibling && link.nextElementSibling.classList.contains('mobile-submenu')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            }
+        });
+
+        // Управление количеством товаров
+        document.querySelectorAll('.quantity-btn.minus').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const input = this.nextElementSibling;
+                const value = parseInt(input.value);
+                if (value > 1) {
+                    input.value = value - 1;
+                    updateCartItemTotal(this.closest('.cart-item'));
+                }
+            });
+        });
+
+        document.querySelectorAll('.quantity-btn.plus').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+                updateCartItemTotal(this.closest('.cart-item'));
+            });
+        });
+
+        document.querySelectorAll('.quantity-input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (parseInt(this.value) < 1) {
+                    this.value = 1;
+                }
+                updateCartItemTotal(this.closest('.cart-item'));
+            });
+        });
+
+        // Удаление товара из корзины
+        document.querySelectorAll('.cart-item-remove').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                this.closest('.cart-item').remove();
+                updateCartTotal();
+            });
+        });
+
+        // Обновление суммы товара
+        function updateCartItemTotal(cartItem) {
+            const price = parseInt(cartItem.querySelector('.cart-item-price').textContent.replace(/[^\d]/g, ''));
+            const quantity = parseInt(cartItem.querySelector('.quantity-input').value);
+            const total = price * quantity;
+            cartItem.querySelector('.cart-item-total p').textContent = total + ' ₽';
+            updateCartTotal();
+        }
+
+        // Обновление общей суммы корзины
+        function updateCartTotal() {
+            let subtotal = 0;
+            document.querySelectorAll('.cart-item-total p').forEach(function(el) {
+                subtotal += parseInt(el.textContent.replace(/[^\d]/g, ''));
+            });
+            
+            const delivery = 300;
+            const total = subtotal + delivery;
+            
+            document.querySelector('.summary-row:nth-child(2) span:last-child').textContent = subtotal + ' ₽';
+            document.querySelector('.summary-row.total span:last-child').textContent = total + ' ₽';
+        }
+    </script>
+</body>
+</html>

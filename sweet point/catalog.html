@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Sweet Point</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">Sweet Point</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item dropdown">
+                            <a href="catalog.html" class="nav-link active">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
+                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
+                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
+                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
+                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="promotions.html" class="nav-link">Акции</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="about.html" class="dropdown-item">О нас</a>
+                                <a href="contacts.html" class="dropdown-item">Контакты</a>
+                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu dropdown">
+                        <button class="user-button">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item">
+                                <i class="fas fa-sign-in-alt"></i> Войти
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="cart.html" class="dropdown-item">
+                                <i class="fas fa-shopping-cart"></i> Корзина
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="container">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="catalog.html" class="mobile-nav-link active">Каталог</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="catalog.html">Весь ассортимент</a></li>
+                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
+                        <li><a href="catalog.html?category=cakes">Торты</a></li>
+                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
+                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">О нас</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contacts.html" class="mobile-nav-link">Контакты</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="delivery.html" class="mobile-nav-link">Доставка и оплата</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="login.html" class="mobile-nav-link">Войти</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="profile.html" class="mobile-nav-link">Мой профиль</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Каталог</h1>
+                <p>Выберите категорию или просмотрите весь ассортимент наших десертов</p>
+            </div>
+
+            <!-- Табы категорий -->
+            <div class="catalog-tabs">
+                <button class="tab-button active" data-category="all">Все</button>
+                <button class="tab-button" data-category="desserts">Десерты</button>
+                <button class="tab-button" data-category="cakes">Торты</button>
+                <button class="tab-button" data-category="pastry">Выпечка</button>
+                <button class="tab-button" data-category="pies">Пироги</button>
+            </div>
+
+            <!-- Товары -->
+            <div class="products-grid">
+                <!-- Торты -->
+                <div class="product-card" data-category="cakes">
+                    <div class="product-image">
+                        <img src="images/product-cake.jpg" alt="Торт Клубничный">
+                        <div class="product-badges"></div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                        <h3 class="product-title">Торт Клубничный</h3>
+                        <div class="product-price">
+                            <span class="price">1200 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="cakes">
+                    <div class="product-image">
+                        <img src="images/product-chocolate-cake.jpg" alt="Торт Шоколадный">
+                        <div class="product-badges">
+                            <span class="badge badge-new">Новинка</span>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <h3 class="product-title">Торт Шоколадный</h3>
+                        <div class="product-price">
+                            <span class="price">1100 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Десерты -->
+                <div class="product-card" data-category="desserts">
+                    <div class="product-image">
+                        <img src="images/product-eclair.jpg" alt="Эклеры шоколадные">
+                        <div class="product-badges"></div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                        <h3 class="product-title">Эклеры шоколадные</h3>
+                        <div class="product-price">
+                            <span class="price">350 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="desserts">
+                    <div class="product-image">
+                        <img src="images/product-macarons.jpg" alt="Макаруны ассорти">
+                        <div class="product-badges">
+                            <span class="badge badge-discount">-15%</span>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                        <h3 class="product-title">Макаруны ассорти</h3>
+                        <div class="product-price">
+                            <span class="price">380 ₽</span>
+                            <span class="old-price">450 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Выпечка -->
+                <div class="product-card" data-category="pastry">
+                    <div class="product-image">
+                        <img src="images/product-croissant.jpg" alt="Круассан классический">
+                        <div class="product-badges">
+                            <span class="badge badge-new">Новинка</span>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <h3 class="product-title">Круассан классический</h3>
+                        <div class="product-price">
+                            <span class="price">180 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="pastry">
+                    <div class="product-image">
+                        <img src="images/product-cinnamon-roll.jpg" alt="Булочка с корицей">
+                        <div class="product-badges"></div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                        <h3 class="product-title">Булочка с корицей</h3>
+                        <div class="product-price">
+                            <span class="price">150 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Пироги -->
+                <div class="product-card" data-category="pies">
+                    <div class="product-image">
+                        <img src="images/product-pie.jpg" alt="Пирог с яблоками">
+                        <div class="product-badges">
+                            <span class="badge badge-discount">-15%</span>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                        <h3 class="product-title">Пирог с яблоками</h3>
+                        <div class="product-price">
+                            <span class="price">550 ₽</span>
+                            <span class="old-price">650 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="pies">
+                    <div class="product-image">
+                        <img src="images/product-cherry-pie.jpg" alt="Пирог с вишней">
+                        <div class="product-badges"></div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.5</span>
+                        </div>
+                        <h3 class="product-title">Пирог с вишней</h3>
+                        <div class="product-price">
+                            <span class="price">600 ₽</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-primary btn-full">
+                            <i class="fas fa-shopping-cart"></i> В корзину
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Sweet Point</h3>
+                    <p class="footer-description">Кондитерская с любовью к сладостям и выпечке</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Навигация</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="promotions.html" class="footer-link">Акции</a>
+                        <a href="about.html" class="footer-link">О нас</a>
+                        <a href="contacts.html" class="footer-link">Контакты</a>
+                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="login.html" class="footer-link">Войти</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sweetpoint.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Sweet Point. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Раскрытие подменю в мобильной версии
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            if (link.nextElementSibling && link.nextElementSibling.classList.contains('mobile-submenu')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            }
+        });
+
+        // Фильтрация товаров по категориям
+        document.querySelectorAll('.tab-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.tab-button').forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+                
+                // Добавляем активный класс нажатой кнопке
+                this.classList.add('active');
+                
+                // Получаем выбранную категорию
+                const category = this.getAttribute('data-category');
+                
+                // Показываем/скрываем товары в зависимости от выбранной категории
+                document.querySelectorAll('.product-card').forEach(function(card) {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
