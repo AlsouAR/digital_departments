@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Sweet Point</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">Sweet Point</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item dropdown">
+                            <a href="catalog.html" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
+                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
+                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
+                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
+                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="promotions.html" class="nav-link">Акции</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="about.html" class="dropdown-item">О нас</a>
+                                <a href="contacts.html" class="dropdown-item">Контакты</a>
+                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu dropdown">
+                        <button class="user-button active">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item">
+                                <i class="fas fa-sign-in-alt"></i> Войти
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="cart.html" class="dropdown-item">
+                                <i class="fas fa-shopping-cart"></i> Корзина
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="container">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="catalog.html" class="mobile-nav-link">Каталог</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="catalog.html">Весь ассортимент</a></li>
+                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
+                        <li><a href="catalog.html?category=cakes">Торты</a></li>
+                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
+                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">О нас</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contacts.html" class="mobile-nav-link">Контакты</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="delivery.html" class="mobile-nav-link">Доставка и оплата</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="login.html" class="mobile-nav-link">Войти</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="profile.html" class="mobile-nav-link active">Мой профиль</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="dashboard.html" class="mobile-nav-link">Аналитика</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Личный кабинет</h1>
+                <p>Управляйте своим профилем и заказами</p>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-sidebar">
+                    <div class="profile-menu">
+                        <a href="#" class="profile-menu-item active">
+                            <i class="fas fa-user"></i>
+                            <span>Профиль</span>
+                        </a>
+                        <a href="delivery.html" class="profile-menu-item">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Доставка и оплата</span>
+                        </a>
+                        <a href="dashboard.html" class="profile-menu-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Аналитика</span>
+                        </a>
+                        <a href="#" class="profile-menu-item text-error">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Выйти</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-tabs">
+                        <button class="profile-tab active" data-tab="personal">Личные данные</button>
+                        <button class="profile-tab" data-tab="orders">Мои заказы</button>
+                    </div>
+
+                    <!-- Личные данные -->
+                    <div class="profile-tab-content active" id="personal-tab">
+                        <div class="profile-card">
+                            <h2>Личные данные</h2>
+                            <p class="profile-card-description">Обновите свои личные данные и контактную информацию</p>
+                            <form class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="first-name">Имя</label>
+                                        <input type="text" id="first-name" value="Иван">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">Фамилия</label>
+                                        <input type="text" id="last-name" value="Иванов">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" value="ivan@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Телефон</label>
+                                    <input type="tel" id="phone" value="+7 (123) 456-78-90">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Адрес</label>
+                                    <input type="text" id="address" value="г. Москва, ул. Примерная, д. 123, кв. 45">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Мои заказы -->
+                    <div class="profile-tab-content" id="orders-tab">
+                        <div class="profile-card">
+                            <h2>История заказов</h2>
+                            <p class="profile-card-description">Просмотрите историю ваших заказов и их статус</p>
+                            
+                            <div class="orders-list">
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <div class="order-id">
+                                                <i class="fas fa-box"></i>
+                                                <span>Заказ #ORD-12345</span>
+                                            </div>
+                                            <p class="order-date">Дата: 15.05.2023</p>
+                                        </div>
+                                        <div class="order-status">
+                                            <div class="order-total">1560 ₽</div>
+                                            <span class="order-status-badge">Доставлен</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <button class="btn btn-outline btn-sm">Подробнее</button>
+                                    </div>
+                                </div>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <div class="order-id">
+                                                <i class="fas fa-box"></i>
+                                                <span>Заказ #ORD-12346</span>
+                                            </div>
+                                            <p class="order-date">Дата: 20.05.2023</p>
+                                        </div>
+                                        <div class="order-status">
+                                            <div class="order-total">2300 ₽</div>
+                                            <span class="order-status-badge">В пути</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <button class="btn btn-outline btn-sm">Подробнее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Sweet Point</h3>
+                    <p class="footer-description">Кондитерская с любовью к сладостям и выпечке</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Навигация</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="promotions.html" class="footer-link">Акции</a>
+                        <a href="about.html" class="footer-link">О нас</a>
+                        <a href="contacts.html" class="footer-link">Контакты</a>
+                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="login.html" class="footer-link">Войти</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sweetpoint.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Sweet Point. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Раскрытие подменю в мобильной версии
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            if (link.nextElementSibling && link.nextElementSibling.classList.contains('mobile-submenu')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            }
+        });
+
+        // Переключение между вкладками профиля
+        document.querySelectorAll('.profile-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Убираем активный класс у всех вкладок
+                document.querySelectorAll('.profile-tab').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                
+                // Добавляем активный класс нажатой вкладке
+                this.classList.add('active');
+                
+                // Скрываем все содержимое вкладок
+                document.querySelectorAll('.profile-tab-content').forEach(function(content) {
+                    content.classList.remove('active');
+                });
+                
+                // Показываем нужное содержимое
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId + '-tab').classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

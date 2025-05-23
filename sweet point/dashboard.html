@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитический дашборд - Sweet Point</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">Sweet Point</a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item dropdown">
+                            <a href="catalog.html" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
+                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
+                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
+                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
+                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="promotions.html" class="nav-link">Акции</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="about.html" class="dropdown-item">О нас</a>
+                                <a href="contacts.html" class="dropdown-item">Контакты</a>
+                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu dropdown">
+                        <button class="user-button active">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item">
+                                <i class="fas fa-sign-in-alt"></i> Войти
+                            </a>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Мой профиль
+                            </a>
+                            <a href="cart.html" class="dropdown-item">
+                                <i class="fas fa-shopping-cart"></i> Корзина
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="container">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="catalog.html" class="mobile-nav-link">Каталог</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="catalog.html">Весь ассортимент</a></li>
+                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
+                        <li><a href="catalog.html?category=cakes">Торты</a></li>
+                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
+                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                    </ul>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="about.html" class="mobile-nav-link">О нас</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="contacts.html" class="mobile-nav-link">Контакты</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="delivery.html" class="mobile-nav-link">Доставка и оплата</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="login.html" class="mobile-nav-link">Войти</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="profile.html" class="mobile-nav-link">Мой профиль</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="dashboard.html" class="mobile-nav-link active">Аналитика</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>Аналитический дашборд</h1>
+                    <p>Анализ продаж и рекомендации для оптимизации бизнеса</p>
+                </div>
+                <div class="dashboard-actions">
+                    <div class="date-filter">
+                        <select id="period-select">
+                            <option value="week">За неделю</option>
+                            <option value="month" selected>За месяц</option>
+                            <option value="quarter">За квартал</option>
+                            <option value="year">За год</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline btn-icon">
+                        <i class="fas fa-download"></i>
+                        <span>Экспорт</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-summary">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Всего заказов</h3>
+                        <div class="summary-value">256</div>
+                        <div class="summary-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12.5%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-ruble-sign"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Выручка</h3>
+                        <div class="summary-value">458,750 ₽</div>
+                        <div class="summary-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8.3%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Новые клиенты</h3>
+                        <div class="summary-value">78</div>
+                        <div class="summary-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>5.2%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Продано товаров</h3>
+                        <div class="summary-value">1,245</div>
+                        <div class="summary-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>10.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Анализ покупательского поведения -->
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2>Популярные товары</h2>
+                        <div class="card-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-content">
+                        <div class="chart-container">
+                            <canvas id="popularProductsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2>Популярные категории</h2>
+                        <div class="card-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-content">
+                        <div class="chart-container">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Рекомендации по оптимизации цен -->
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2>Рекомендации по ценам</h2>
+                        <div class="card-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-content">
+                        <div class="recommendations-list">
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon increase">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h3>Повысить цену</h3>
+                                    <p>Торт "Наполеон" - высокий спрос, рекомендуемое повышение: +10%</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline">Применить</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon increase">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h3>Повысить цену</h3>
+                                    <p>Эклеры - высокий спрос, рекомендуемое повышение: +5%</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline">Применить</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon decrease">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h3>Снизить цену</h3>
+                                    <p>Пирог с яблоками - низкий спрос, рекомендуемое снижение: -15%</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline">Применить</button>
+                            </div>
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon decrease">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h3>Снизить цену</h3>
+                                    <p>Кексы с изюмом - низкий спрос, рекомендуемое снижение: -10%</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline">Применить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Прогнозирование спроса -->
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h2>Прогноз спроса</h2>
+                        <div class="card-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-content">
+                        <div class="chart-container">
+                            <canvas id="demandForecastChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="dashboard-card-header">
+                        <h2>Планирование закупок и производства</h2>
+                        <div class="card-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-content">
+                        <div class="planning-table-container">
+                            <table class="planning-table">
+                                <thead>
+                                    <tr>
+                                        <th>Товар</th>
+                                        <th>Текущий запас</th>
+                                        <th>Прогноз продаж</th>
+                                        <th>Рекомендуемый запас</th>
+                                        <th>Необходимо произвести</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Торт "Наполеон"</td>
+                                        <td>5 шт.</td>
+                                        <td>15 шт.</td>
+                                        <td>20 шт.</td>
+                                        <td>15 шт.</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline">Заказать</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Эклеры</td>
+                                        <td>12 шт.</td>
+                                        <td>30 шт.</td>
+                                        <td>35 шт.</td>
+                                        <td>23 шт.</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline">Заказать</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Пирог с яблоками</td>
+                                        <td>8 шт.</td>
+                                        <td>5 шт.</td>
+                                        <td>10 шт.</td>
+                                        <td>2 шт.</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline">Заказать</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Кексы с изюмом</td>
+                                        <td>20 шт.</td>
+                                        <td>10 шт.</td>
+                                        <td>15 шт.</td>
+                                        <td>0 шт.</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline" disabled>Заказать</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Макаруны</td>
+                                        <td>15 шт.</td>
+                                        <td>40 шт.</td>
+                                        <td>45 шт.</td>
+                                        <td>30 шт.</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline">Заказать</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Sweet Point</h3>
+                    <p class="footer-description">Кондитерская с любовью к сладостям и выпечке</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Навигация</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="promotions.html" class="footer-link">Акции</a>
+                        <a href="about.html" class="footer-link">О нас</a>
+                        <a href="contacts.html" class="footer-link">Контакты</a>
+                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="login.html" class="footer-link">Войти</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sweetpoint.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 Sweet Point. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Раскрытие подменю в мобильной версии
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            if (link.nextElementSibling && link.nextElementSibling.classList.contains('mobile-submenu')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            }
+        });
+
+        // Инициализация графиков
+        document.addEventListener('DOMContentLoaded', function() {
+            // График популярных товаров
+            const popularProductsCtx = document.getElementById('popularProductsChart').getContext('2d');
+            const popularProductsChart = new Chart(popularProductsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Торт "Наполеон"', 'Эклеры', 'Макаруны', 'Чизкейк', 'Круассаны'],
+                    datasets: [{
+                        label: 'Продажи (шт.)',
+                        data: [120, 95, 85, 70, 65],
+                        backgroundColor: [
+                            'rgba(249, 168, 212, 0.8)', // Нежно-розовый
+                            'rgba(254, 243, 199, 0.8)', // Нежно-желтый
+                            'rgba(165, 243, 252, 0.8)', // Нежно-голубой
+                            'rgba(254, 202, 202, 0.8)', // Нежно-красный
+                            'rgba(209, 250, 229, 0.8)'  // Нежно-зеленый
+                        ],
+                        borderColor: [
+                            'rgba(249, 168, 212, 1)',
+                            'rgba(254, 243, 199, 1)',
+                            'rgba(165, 243, 252, 1)',
+                            'rgba(254, 202, 202, 1)',
+                            'rgba(209, 250, 229, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // График популярных категорий
+            const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
+            const categoriesChart = new Chart(categoriesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Торты', 'Десерты', 'Выпечка', 'Пироги', 'Другое'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            'rgba(249, 168, 212, 0.8)', // Нежно-розовый
+                            'rgba(254, 243, 199, 0.8)', // Нежно-желтый
+                            'rgba(165, 243, 252, 0.8)', // Нежно-голубой
+                            'rgba(254, 202, 202, 0.8)', // Нежно-красный
+                            'rgba(209, 250, 229, 0.8)'  // Нежно-зеленый
+                        ],
+                        borderColor: [
+                            'rgba(249, 168, 212, 1)',
+                            'rgba(254, 243, 199, 1)',
+                            'rgba(165, 243, 252, 1)',
+                            'rgba(254, 202, 202, 1)',
+                            'rgba(209, 250, 229, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+
+            // График прогноза спроса
+            const demandForecastCtx = document.getElementById('demandForecastChart').getContext('2d');
+            const demandForecastChart = new Chart(demandForecastCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                    datasets: [{
+                        label: 'Торты',
+                        data: [65, 70, 80, 85, 90, 95, 100, 95, 90, 85, 95, 110],
+                        borderColor: 'rgba(249, 168, 212, 1)',
+                        backgroundColor: 'rgba(249, 168, 212, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Десерты',
+                        data: [50, 55, 60, 65, 70, 75, 80, 85, 80, 75, 85, 95],
+                        borderColor: 'rgba(254, 243, 199, 1)',
+                        backgroundColor: 'rgba(254, 243, 199, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Выпечка',
+                        data: [40, 45, 50, 55, 60, 65, 70, 75, 70, 65, 75, 85],
+                        borderColor: 'rgba(165, 243, 252, 1)',
+                        backgroundColor: 'rgba(165, 243, 252, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
