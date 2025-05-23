@@ -16,3 +16,19 @@ def about(request):
     }
 
     return render(request, 'main/about.html', context)
+
+def contacts(request):
+    context: dict[str, str] = {
+        'title': 'Контакты',
+        'content': 'Sweet Point - Контакты'
+    }
+
+    return render(request, 'main/contacts.html', context)
+
+def delivery(request):
+    context: dict[str, str] = {
+        'title': 'Доставка и оплата',
+        'content': 'Sweet Point - Доставка и оплата'
+    }
+
+    return render(request, 'main/delivery.html', context)

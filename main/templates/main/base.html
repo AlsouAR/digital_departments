@@ -23,13 +23,13 @@
                 <nav class="main-nav">
                     <ul class="nav-list">
                         <li class="nav-item dropdown">
-                            <a href="catalog.html" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
+                            <a href="{% url "goods:index" %}" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
                             <div class="dropdown-menu">
-                                <a href="catalog.html" class="dropdown-item">Весь ассортимент</a>
-                                <a href="catalog.html?category=desserts" class="dropdown-item">Десерты</a>
-                                <a href="catalog.html?category=cakes" class="dropdown-item">Торты</a>
-                                <a href="catalog.html?category=pastry" class="dropdown-item">Выпечка</a>
-                                <a href="catalog.html?category=pies" class="dropdown-item">Пироги</a>
+                                <a href="{% url "goods:index" %}" class="dropdown-item">Весь ассортимент</a>
+                                <a href="{% url "goods:index" %}" class="dropdown-item">Десерты</a>
+                                <a href="{% url "goods:index" %}" class="dropdown-item">Торты</a>
+                                <a href="{% url "goods:index" %}" class="dropdown-item">Выпечка</a>
+                                <a href="{% url "goods:index" %}" class="dropdown-item">Пироги</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -39,8 +39,8 @@
                             <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
                             <div class="dropdown-menu">
                                 <a href="{% url "main:about" %}" class="dropdown-item">О нас</a>
-                                <a href="contacts.html" class="dropdown-item">Контакты</a>
-                                <a href="delivery.html" class="dropdown-item">Доставка и оплата</a>
+                                <a href="{% url "main:contacts" %}" class="dropdown-item">Контакты</a>
+                                <a href="{% url "main:delivery" %}" class="dropdown-item">Доставка и оплата</a>
                             </div>
                         </li>
                     </ul>
@@ -79,7 +79,7 @@
         <div class="container">
             <ul class="mobile-nav-list">
                 <li class="mobile-nav-item">
-                    <a href="catalog.html" class="mobile-nav-link">Каталог</a>
+                    <a href="{% url "goods:index" %}" class="mobile-nav-link">Каталог</a>
                     <ul class="mobile-submenu">
                         <li><a href="catalog.html">Весь ассортимент</a></li>
                         <li><a href="catalog.html?category=desserts">Десерты</a></li>
@@ -130,11 +130,11 @@
                 <div class="footer-column">
                     <h3 class="footer-title">Навигация</h3>
                     <div class="footer-links">
-                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="{% url "goods:index" %}" class="footer-link">Каталог</a>
                         <a href="promotions.html" class="footer-link">Акции</a>
-                        <a href="about.html" class="footer-link">О нас</a>
-                        <a href="contacts.html" class="footer-link">Контакты</a>
-                        <a href="delivery.html" class="footer-link">Доставка и оплата</a>
+                        <a href="{% url "main:about" %}" class="footer-link">О нас</a>
+                        <a href="{% url "main:contacts" %}" class="footer-link">Контакты</a>
+                        <a href="{% url "main:delivery" %}" class="footer-link">Доставка и оплата</a>
                         <a href="login.html" class="footer-link">Войти</a>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
                         <h1>Sweet Point</h1>
                         <p>Кондитерская с любовью к сладостям. У нас сладко и точка.</p>
                         <div class="hero-buttons">
-                            <a href="catalog.html" class="btn btn-primary">Перейти в каталог</a>
+                            <a href="{% url "goods:index" %}" class="btn btn-primary">Перейти в каталог</a>
                             <a href="promotions.html" class="btn btn-outline">Акции и скидки</a>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     <p>Выберите категорию и найдите то, что вам по вкусу</p>
                 </div>
                 <div class="categories-grid">
-                    <a href="catalog.html?category=desserts" class="category-card">
+                    <a href="{% url "goods:index" %}.html?category=desserts" class="category-card">
                         <div class="category-image">
                             <img src="{% static "deps/images/category-desserts.jpg" %}" alt="Десерты">
                             <div class="category-overlay">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="catalog.html?category=cakes" class="category-card">
+                    <a href="{% url "goods:index" %}?category=cakes" class="category-card">
                         <div class="category-image">
                             <img src="{% static "deps/images/category-cakes.jpg" %}" alt="Торты">
                             <div class="category-overlay">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="catalog.html?category=pastry" class="category-card">
+                    <a href="{% url "goods:index" %}?category=pastry" class="category-card">
                         <div class="category-image">
                             <img src="{% static "deps/images/category-pastry.jpg" %}" alt="Выпечка">
                             <div class="category-overlay">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="catalog.html?category=pies" class="category-card">
+                    <a href="{% url "goods:index" %}?category=pies" class="category-card">
                         <div class="category-image">
                             <img src="{% static "deps/images/category-pies.jpg" %}" alt="Пироги">
                             <div class="category-overlay">
@@ -75,7 +75,7 @@
                         <h2>Популярные товары</h2>
                         <p>Самые любимые десерты наших клиентов</p>
                     </div>
-                    <a href="catalog.html" class="see-all">Все товары <i class="fas fa-chevron-right"></i></a>
+                    <a href="{% url "goods:index" %}" class="see-all">Все товары <i class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="products-grid">
                     <div class="product-card">
@@ -169,7 +169,7 @@
                     </div>
                 </div>
                 <div class="mobile-see-all">
-                    <a href="catalog.html" class="btn btn-outline btn-full">Смотреть все товары</a>
+                    <a href="{% url "goods:index" %}" class="btn btn-outline btn-full">Смотреть все товары</a>
                 </div>
             </div>
         </section>
