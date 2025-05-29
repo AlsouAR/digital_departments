@@ -18,195 +18,41 @@
                 <button class="tab-button" data-category="pastry">Выпечка</button>
                 <button class="tab-button" data-category="pies">Пироги</button>
             </div>
-
             <!-- Товары -->
             <div class="products-grid">
-                <!-- Торты -->
-                <div class="product-card" data-category="cakes">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-cake.jpg" %}" alt="Торт Клубничный">
-                        <div class="product-badges"></div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
+                {% for product in goods %}
+                    <div class="product-card" data-category={{ product.category }}>
+                        <div class="product-image">
+                            <img src="{% static product.image %}" alt={{ product.name }}>
+                            <div class="product-badges">
+                                {% if 'new' in product.badges %}
+                                <span class="badge badge-new">Новинка</span>
+                                {% endif %}
+                                {% if 'discount' in product.badges %}
+                                <span class="badge badge-discount">-{{product.discount}}%</span>
+                                {% endif %}
+                            </div>
                         </div>
-                        <h3 class="product-title">Торт Клубничный</h3>
-                        <div class="product-price">
-                            <span class="price">1200 ₽</span>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span> {{ product.rating }} </span>
+                            </div>
+                            <h3 class="product-title">{{ product.name }}</h3>
+                            <div class="product-price">
+                                <span class="price"> {{ product.price }} ₽</span>
+                                {% if product.old_price %}
+                                <span class="old-price"> {{ product.old_price }} ₽</span>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card" data-category="cakes">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-chocolate-cake.jpg" %}" alt="Торт Шоколадный">
-                        <div class="product-badges">
-                            <span class="badge badge-new">Новинка</span>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                        <h3 class="product-title">Торт Шоколадный</h3>
-                        <div class="product-price">
-                            <span class="price">1100 ₽</span>
+                        <div class="product-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
                         </div>
                     </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Десерты -->
-                <div class="product-card" data-category="desserts">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-eclair.jpg" %}" alt="Эклеры шоколадные">
-                        <div class="product-badges"></div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                        <h3 class="product-title">Эклеры шоколадные</h3>
-                        <div class="product-price">
-                            <span class="price">350 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card" data-category="desserts">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-macarons.jpg" %}" alt="Макаруны ассорти">
-                        <div class="product-badges">
-                            <span class="badge badge-discount">-15%</span>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
-                        </div>
-                        <h3 class="product-title">Макаруны ассорти</h3>
-                        <div class="product-price">
-                            <span class="price">380 ₽</span>
-                            <span class="old-price">450 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Выпечка -->
-                <div class="product-card" data-category="pastry">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-croissant.jpg" %}" alt="Круассан классический">
-                        <div class="product-badges">
-                            <span class="badge badge-new">Новинка</span>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                        <h3 class="product-title">Круассан классический</h3>
-                        <div class="product-price">
-                            <span class="price">180 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card" data-category="pastry">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-cinnamon-roll.jpg"%}" alt="Булочка с корицей">
-                        <div class="product-badges"></div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                        <h3 class="product-title">Булочка с корицей</h3>
-                        <div class="product-price">
-                            <span class="price">150 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Пироги -->
-                <div class="product-card" data-category="pies">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-pie.jpg"%}" alt="Пирог с яблоками">
-                        <div class="product-badges">
-                            <span class="badge badge-discount">-15%</span>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                        <h3 class="product-title">Пирог с яблоками</h3>
-                        <div class="product-price">
-                            <span class="price">550 ₽</span>
-                            <span class="old-price">650 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card" data-category="pies">
-                    <div class="product-image">
-                        <img src="{% static "deps/images/product-cherry-pie.jpg"%}" alt="Пирог с вишней">
-                        <div class="product-badges"></div>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                        <h3 class="product-title">Пирог с вишней</h3>
-                        <div class="product-price">
-                            <span class="price">600 ₽</span>
-                        </div>
-                    </div>
-                    <div class="product-footer">
-                        <button class="btn btn-primary btn-full">
-                            <i class="fas fa-shopping-cart"></i> В корзину
-                        </button>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
         </div>
     </main>
 {% endblock %}
