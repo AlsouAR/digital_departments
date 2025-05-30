@@ -1,4 +1,5 @@
 {% load static %}
+{% load goods_tags %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,6 +26,7 @@
                         <li class="nav-item dropdown">
                             <a href="{% url "goods:index" %}" class="nav-link">Каталог <i class="fas fa-chevron-down"></i></a>
                             <div class="dropdown-menu">
+                                {% tag_categories as categories %}
                                 {% for category in categories %}
                                     <a href="{% url "goods:index" %}" class="dropdown-item">{{category.name}}</a>
                                 {% endfor %}
@@ -82,11 +84,10 @@
                 <li class="mobile-nav-item">
                     <a href="{% url "goods:index" %}" class="mobile-nav-link">Каталог</a>
                     <ul class="mobile-submenu">
-                        <li><a href="catalog.html">Весь ассортимент</a></li>
-                        <li><a href="catalog.html?category=desserts">Десерты</a></li>
-                        <li><a href="catalog.html?category=cakes">Торты</a></li>
-                        <li><a href="catalog.html?category=pastry">Выпечка</a></li>
-                        <li><a href="catalog.html?category=pies">Пироги</a></li>
+                        {% tag_categories as categories %}
+                        {% for category in categories %}
+                            <li><a href="{% url "catalog:index" %}">{{ category.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li class="mobile-nav-item">
