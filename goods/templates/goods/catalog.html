@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load goods_tags %}
 
 {% block content %}
 <!-- Основной контент -->
@@ -12,11 +13,11 @@
 
             <!-- Табы категорий -->
             <div class="catalog-tabs">
-                <button class="tab-button active" data-category="all">Все</button>
-                <button class="tab-button" data-category="desserts">Десерты</button>
-                <button class="tab-button" data-category="cakes">Торты</button>
-                <button class="tab-button" data-category="pastry">Выпечка</button>
-                <button class="tab-button" data-category="pies">Пироги</button>
+                {% tag_categories as categories %}
+                {% for category in categories %}
+                    
+                    <a href="{% url "goods:index_by_category" category.slug%}" class="tab-button">{{category.name}}</a>
+                {% endfor %}
             </div>
             <!-- Товары -->
             <div class="products-grid">
