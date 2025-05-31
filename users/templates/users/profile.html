@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Основной контент -->
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Личный кабинет</h1>
+                <p>Управляйте своим профилем и заказами</p>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-sidebar">
+                    <div class="profile-menu">
+                        <a href="#" class="profile-menu-item active">
+                            <i class="fas fa-user"></i>
+                            <span>Профиль</span>
+                        </a>
+                        <a href="delivery.html" class="profile-menu-item">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Доставка и оплата</span>
+                        </a>
+                        <a href="dashboard.html" class="profile-menu-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Аналитика</span>
+                        </a>
+                        <a href="#" class="profile-menu-item text-error">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Выйти</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-tabs">
+                        <button class="profile-tab active" data-tab="personal">Личные данные</button>
+                        <button class="profile-tab" data-tab="orders">Мои заказы</button>
+                    </div>
+
+                    <!-- Личные данные -->
+                    <div class="profile-tab-content active" id="personal-tab">
+                        <div class="profile-card">
+                            <h2>Личные данные</h2>
+                            <p class="profile-card-description">Обновите свои личные данные и контактную информацию</p>
+                            <form class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="first-name">Имя</label>
+                                        <input type="text" id="first-name" value="Иван">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">Фамилия</label>
+                                        <input type="text" id="last-name" value="Иванов">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" value="ivan@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Телефон</label>
+                                    <input type="tel" id="phone" value="+7 (123) 456-78-90">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Адрес</label>
+                                    <input type="text" id="address" value="г. Москва, ул. Примерная, д. 123, кв. 45">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Мои заказы -->
+                    <div class="profile-tab-content" id="orders-tab">
+                        <div class="profile-card">
+                            <h2>История заказов</h2>
+                            <p class="profile-card-description">Просмотрите историю ваших заказов и их статус</p>
+                            
+                            <div class="orders-list">
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <div class="order-id">
+                                                <i class="fas fa-box"></i>
+                                                <span>Заказ #ORD-12345</span>
+                                            </div>
+                                            <p class="order-date">Дата: 15.05.2023</p>
+                                        </div>
+                                        <div class="order-status">
+                                            <div class="order-total">1560 ₽</div>
+                                            <span class="order-status-badge">Доставлен</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <button class="btn btn-outline btn-sm">Подробнее</button>
+                                    </div>
+                                </div>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <div class="order-id">
+                                                <i class="fas fa-box"></i>
+                                                <span>Заказ #ORD-12346</span>
+                                            </div>
+                                            <p class="order-date">Дата: 20.05.2023</p>
+                                        </div>
+                                        <div class="order-status">
+                                            <div class="order-total">2300 ₽</div>
+                                            <span class="order-status-badge">В пути</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-footer">
+                                        <button class="btn btn-outline btn-sm">Подробнее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Основной контент -->
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <a href="{% url 'users:login' %}" class="auth-tab {% if request.resolver_match.url_name == 'login' %}active{% endif %}">
+                        Вход
+                    </a>
+                    <a href="{% url 'users:registration' %}" class="auth-tab {% if request.resolver_match.url_name == 'registration' %}active{% endif %}">
+                        Регистрация
+                    </a>
+                </div>
+                <div class="auth-content">
+                    <!-- Форма входа -->
+                    <div class="auth-form active" id="login-form">
+                        <h2>Вход в аккаунт</h2>
+                        <p class="auth-description">Введите ваш email и пароль для входа в личный кабинет</p>
+                        <form>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="example@mail.ru">
+                            </div>
+                            <div class="form-group">
+                                <div class="label-with-link">
+                                    <label for="password">Пароль</label>
+                                    <a href="#" class="forgot-password">Забыли пароль?</a>
+                                </div>
+                                <input type="password" id="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Войти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
