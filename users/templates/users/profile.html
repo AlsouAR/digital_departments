@@ -17,7 +17,7 @@
                             <i class="fas fa-user"></i>
                             <span>Профиль</span>
                         </a>
-                        <a href="delivery.html" class="profile-menu-item">
+                        <a href="{% url "main:delivery" %}" class="profile-menu-item">
                             <i class="fas fa-credit-card"></i>
                             <span>Доставка и оплата</span>
                         </a>
@@ -33,10 +33,12 @@
                 </div>
 
                 <div class="profile-content">
+                    {% comment "" %}
                     <div class="profile-tabs">
                         <button class="profile-tab active" data-tab="personal">Личные данные</button>
                         <button class="profile-tab" data-tab="orders">Мои заказы</button>
                     </div>
+                    {% endcomment %}
 
                     <!-- Личные данные -->
                     <div class="profile-tab-content active" id="personal-tab">
@@ -72,9 +74,9 @@
                     </div>
 
                     <!-- Мои заказы -->
-                    <div class="profile-tab-content" id="orders-tab">
+                    <div class="profile-tab-content active" id="orders-tab">
                         <div class="profile-card">
-                            <h2>История заказов</h2>
+                            <h2>Мои заказы</h2>
                             <p class="profile-card-description">Просмотрите историю ваших заказов и их статус</p>
                             
                             <div class="orders-list">
