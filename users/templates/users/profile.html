@@ -45,28 +45,85 @@
                         <div class="profile-card">
                             <h2>Личные данные</h2>
                             <p class="profile-card-description">Обновите свои личные данные и контактную информацию</p>
-                            <form class="profile-form">
+                            <form action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="col-md-12 mb-3">
+                                        {% if user.image %}
+                                            <img src="{{ user.image.url }}"
+                                            alt="Аватар пользователя" class="img-fluid rounded-circle" 
+                                            style="max-width: 150px;">
+                                        {% else %}
+                                            <img src="{% static "deps/images/baseavatar.jpg" %}"
+                                            alt="Аватар пользователя" class="img-fluid rounded-circle" 
+                                            style="max-width: 150px;">
+                                        {% endif %}
+                                        <input type="file" class="form-row mt-3" id="id_image"
+                                            name='image'
+                                            accept="image/*" value="{{ form.image.value|default:'' }}">
+                                        <div class='text-error'>
+                                            {% if form.image.errors %}
+                                            {{ form.image.errors }}{% endif %}
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="first-name">Имя</label>
-                                        <input type="text" id="first-name" value="Иван">
+                                        <label for="id_first_name">Имя</label>
+                                        <input type="text" id="id_first_name"
+                                        name='first_name'
+                                        value="{{ form.first_name.value|default:'' }}" required>
+                                        <div class='text-error'>
+                                            {% if form.first_name.errors %}
+                                            {{ form.first_name.errors }}{% endif %}
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="last-name">Фамилия</label>
-                                        <input type="text" id="last-name" value="Иванов">
+                                        <label for="id_last_name">Фамилия</label>
+                                        <input type="text" id="id_last_name"
+                                        name='last_name' value="{{ form.last_name.value|default:'' }}" required>
+                                        <div class='text-error'>
+                                            {% if form.last_name.errors %}
+                                            {{ form.last_name.errors }}{% endif %}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" value="ivan@example.com">
+                                    <label for="id_username">Логин</label>
+                                    <input type="text" id="id_username"
+                                    name='username' value="{{ form.username.value|default:'' }}" required>
+                                    <div class='text-error'>
+                                        {% if form.username.errors %}
+                                        {{ form.username.errors }}{% endif %}
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Телефон</label>
-                                    <input type="tel" id="phone" value="+7 (123) 456-78-90">
+                                    <label for="id_email">Email</label>
+                                    <input type="email" id="id_email" placeholder="example@mail.ru" 
+                                    name='email' value="{{ form.email.value|default:'' }}" required>
+                                    <div class='text-error'>
+                                        {% if form.email.errors %}
+                                        {{ form.email.errors }}{% endif %}
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Адрес</label>
-                                    <input type="text" id="address" value="г. Москва, ул. Примерная, д. 123, кв. 45">
+                                    <label for="id_phone">Телефон</label>
+                                    <input type="tel" id="id_phone" placeholder="+7 (123) 456-78-90" 
+                                    name='phone' pattern="\+?1?\d{9,15}$" 
+                                    value="{{ form.phone.value|default:'' }}" >
+                                    <div class='text-error'>
+                                        {% if form.phone.errors %}
+                                        {{ form.phone.errors }}{% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_address">Адрес</label>
+                                    <input type="text" id="id_address" placeholder="г. Казань, ул. Примерная, д. 123, кв. 45"
+                                    name='address' value="{{ form.address.value|default:'' }}" >
+                                    <div class='text-error'>
+                                        {% if form.address.errors %}
+                                        {{ form.address.errors }}{% endif %}
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                             </form>

@@ -2397,3 +2397,20 @@ select:focus {
 .error-alert-close:hover {
     color: var(--error-dark);
 }
+
+.img-fluid {
+    max-width: 100%;
+    height: auto
+}
+
+.rounded-circle {
+    border-radius: 50% !important
+}
+
+.text-center {
+    text-align: center !important
+}
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 100%
+}
