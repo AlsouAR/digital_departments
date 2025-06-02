@@ -7,11 +7,11 @@
         <div class="container">
             <div class="auth-container">
                 <div class="auth-tabs">
-                    <a href="{% url 'users:login' %}" class="auth-tab {% if request.resolver_match.url_name == 'login' %}active{% endif %}">
-                        Вход
-                    </a>
                     <a href="{% url 'users:registration' %}" class="auth-tab {% if request.resolver_match.url_name == 'registration' %}active{% endif %}">
                         Регистрация
+                    </a>
+                    <a href="{% url 'users:login' %}" class="auth-tab {% if request.resolver_match.url_name == 'login' %}active{% endif %}">
+                        Вход
                     </a>
                 </div>
                 <div class="auth-content">
@@ -19,32 +19,63 @@
                     <div class="auth-form active" id="form">
                         <h2>Создать аккаунт</h2>
                         <p class="auth-description">Зарегистрируйтесь, чтобы делать заказы и отслеживать их статус</p>
-                        <form>
+                        <form action = " {% url 'user:registration' %}" method="post">
+                            {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="first-name">Имя</label>
-                                    <input type="text" id="first-name">
+                                    <label for="id_first_name">Имя</label>
+                                    <input type="text" id="id_first-name" 
+                                    name='first_name' value="{{ form.first_name.value|default:'' }}">
+                                    <div class='text-error'>
+                                        {% if form.first_name.errors %}
+                                        {{ form.first_name.errors }}{% endif %}
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="last-name">Фамилия</label>
-                                    <input type="text" id="last-name">
+                                    <label for="id_last_name">Фамилия</label>
+                                    <input type="text" id="id_last_name"
+                                    name='last_name' value="{{ form.last_name.value|default:'' }}">
+                                    <div class='text-error'>
+                                        {% if form.last_name.errors %}
+                                        {{ form.last_name.errors }}{% endif %}
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email-register">Email</label>
-                                <input type="email" id="email-register" placeholder="example@mail.ru">
+                                <label for="id_username">Логин</label>
+                                <input type="text" id="id_username"
+                                name='username' value="{{ form.username.value|default:'' }}">
+                                <div class='text-error'>
+                                    {% if form.username.errors %}
+                                    {{ form.username.errors }}{% endif %}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Телефон</label>
-                                <input type="tel" id="phone" placeholder="+7 (___) ___-__-__">
+                                <label for="id_email">Email</label>
+                                <input type="email" id="id_email" placeholder="example@mail.ru" 
+                                name='email' value="{{ form.email.value|default:'' }}">
+                                <div class='text-error'>
+                                    {% if form.email.errors %}
+                                    {{ form.email.errors }}{% endif %}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="password-register">Пароль</label>
-                                <input type="password" id="password-register">
+                                <label for="id_password1">Пароль</label>
+                                <input type="password" id="id_password1"
+                                name='password1' value="{{ form.password1.value|default:'' }}">
+                                <div class='text-error'>
+                                    {% if form.password1.errors %}
+                                    {{ form.password1.errors }}{% endif %}
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="confirm-password">Подтвердите пароль</label>
-                                <input type="password" id="confirm-password">
+                                <label for="id_password2">Подтвердите пароль</label>
+                                <input type="password" id="id_password2" 
+                                name='password2' value="{{ form.password2.value|default:'' }}">
+                                <div class='text-error'>
+                                    {% if form.password2.errors %}
+                                    {{ form.password2.errors }}{% endif %}
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>
                         </form>

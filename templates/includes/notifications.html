@@ -1,0 +1,11 @@
+{% load static %}
+{% if form.non_field_errors %}
+    <div class="error-alert">
+        <div class="error-alert-icon">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error-alert-content">
+            {{ form.non_field_errors }}
+        </div>
+    </div>
+{% endif %}
