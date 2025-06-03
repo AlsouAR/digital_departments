@@ -34,8 +34,10 @@ class Products(models.Model):
         return self.name
     
     def display_new_price(self):
-        new_price = self.price - self.price*(self.discount/100)
-        return int(new_price)
+        if self.discount:
+            new_price = self.price - self.price*(self.discount/100)
+            return int(new_price)
+        return int(self.price)
     
     def display_discount(self):
         return int(self.discount)

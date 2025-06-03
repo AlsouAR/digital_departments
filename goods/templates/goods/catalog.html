@@ -99,9 +99,9 @@
                             </div>
                         </div>
                         <div class="product-footer">
-                            <button class="btn btn-primary btn-full">
+                            <a href="{% url 'cart:cart_add' product.slug %}" class="btn btn-primary btn-full">
                                 <i class="fas fa-shopping-cart"></i> В корзину
-                            </button>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

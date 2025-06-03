@@ -775,8 +775,9 @@ section {
 /* Страница корзины */
 .cart-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 2rem;
+    align-items: start;
 }
 
 .cart-items {
@@ -879,7 +880,17 @@ section {
 }
 
 .cart-summary {
+    position: sticky; /* Фиксация при прокрутке */
+    top: 2rem;
     align-self: start;
+}
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background-color: var(--primary-light);
+    border-radius: 4px;
 }
 
 .cart-summary-card {
