@@ -1,5 +1,6 @@
 {% load static %}
 {% load goods_tags %}
+{% load carts_tags %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -45,10 +46,13 @@
                         </li>
                     </ul>
                 </nav>
+                
                 <div class="header-actions">
+                    
                     <a href="{% url 'carts:cart_user' %}" class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
+                        {% user_carts request as carts %}
+                        <span class="cart-count">{{ carts.total_quantity }}</span>
                     </a>
                     <div class="user-menu dropdown">
                         <button class="user-button">
@@ -67,9 +71,6 @@
                                 {% endif %}
                                 <a href="{% url "user:profile" %}" class="dropdown-item">
                                     <i class="fas fa-user"></i> Мой профиль
-                                </a>
-                                <a href="cart.html" class="dropdown-item">
-                                    <i class="fas fa-shopping-cart"></i> Корзина
                                 </a>
                             {% endif %}
                         </div>
