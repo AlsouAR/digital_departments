@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Основной контент -->
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Корзина</h1>
+                <p>Ваши товары в корзине</p>
+            </div>
+
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="images/product-cake.jpg" alt="Торт Клубничный">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>Торт Клубничный</h3>
+                            <p class="cart-item-price">Цена: 1200 ₽</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-btn plus">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="cart-item-total">
+                            <p>1200 ₽</p>
+                        </div>
+                        <button class="cart-item-remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="images/product-croissant.jpg" alt="Круассан классический">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>Круассан классический</h3>
+                            <p class="cart-item-price">Цена: 180 ₽</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn plus">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="cart-item-total">
+                            <p>360 ₽</p>
+                        </div>
+                        <button class="cart-item-remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="cart-summary-card">
+                        <h3>Итого</h3>
+                        <div class="summary-row">
+                            <span>Сумма</span>
+                            <span>1560 ₽</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Доставка</span>
+                            <span>300 ₽</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Итого к оплате</span>
+                            <span>1860 ₽</span>
+                        </div>
+                        <button class="btn btn-primary btn-full">Оформить заказ</button>
+                        <a href="catalog.html" class="btn btn-outline btn-full">
+                            <i class="fas fa-shopping-bag"></i> Продолжить покупки
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
