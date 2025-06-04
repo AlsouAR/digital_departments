@@ -29,7 +29,7 @@
                                     <h3>{{ cart.product.name }}</h3>
                                     <p class="cart-item-price">Цена: {{ cart.product.display_new_price }} ₽</p>
                                 </div>
-                                <div class="cart-item-quantity">
+                                {% comment %} <div class="cart-item-quantity">
                                     <button class="quantity-btn minus">
                                         <i class="fas fa-minus"></i>
                                     </button>
@@ -37,6 +37,18 @@
                                     <button class="quantity-btn plus">
                                         <i class="fas fa-plus"></i>
                                     </button>
+                                </div> {% endcomment %}
+                                
+                                <div class="cart-item-quantity">
+                                    <a href="{% url 'cart:cart_change' cart.product.slug %}?action=subtract" 
+                                    class="quantity-btn minus">
+                                        <i class="fas fa-minus"></i>
+                                    </a>
+                                    <input type="number" value="{{ cart.quantity }}" min="1" class="quantity-input">
+                                    <a href="{% url 'cart:cart_change' cart.product.slug %}?action=add"
+                                    class="quantity-btn plus">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
                                 </div>
                                 <div class="cart-item-total">
                                     <p>{{ cart.products_price }} ₽</p>
@@ -69,7 +81,8 @@
                                 <span>{{ carts.total_price }} ₽</span>
                             </div>
                             {% if carts %}
-                                <button class="btn btn-primary btn-full">Оформить заказ</button>
+                                {% comment %} <button class="btn btn-primary btn-full">Оформить заказ</button> {% endcomment %}
+                                <a href="{% url 'carts:cart_checkout' %}" class="btn btn-primary btn-full">Оформить заказ
                             {% endif %}
                             <a href="{% url 'goods:index' %}" class="btn btn-outline btn-full">
                                 <i class="fas fa-shopping-bag"></i> Продолжить покупки
