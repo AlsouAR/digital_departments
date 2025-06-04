@@ -52,7 +52,7 @@
                     <a href="{% url 'carts:cart_user' %}" class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         {% user_carts request as carts %}
-                        <span class="cart-count">{{ carts.total_quantity }}</span>
+                        <span class="cart-count" id="cart-count">{{ carts.total_quantity }}</span>
                     </a>
                     <div class="user-menu dropdown">
                         <button class="user-button">
@@ -194,5 +194,8 @@
             }
         });
     </script>
+    <script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
+    <script src="{% static "deps/js/jquery-ajax.js" %}"></script>
+    {% comment %} <script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js" %}"></script> {% endcomment %}
 </body>
 </html>

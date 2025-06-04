@@ -90,6 +90,10 @@ img {
 .btn-full {
     width: 100%;
 }
+.btn-full-cart {
+    width: 100%;
+}
+
 
 /* Бейджи */
 .badge {
@@ -2726,5 +2730,219 @@ select:focus {
     
     .order-summary-card {
         padding: 1rem;
+    }
+}
+/* Стили для системы оповещений */
+.custom-shadow {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Базовые стили для уведомлений */
+#notification,
+#jq-notification {
+    position: fixed;
+    top: 100px;
+    min-width: 300px;
+    max-width: 500px;
+    border: none;
+    border-radius: 12px;
+    z-index: 9999;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+/* #jq-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+} */
+
+/* Стили для успешных уведомлений */
+.alert-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+    color: white;
+    border-left: 4px solid #059669;
+}
+
+.alert-success::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Стили для предупреждений/ошибок */
+.alert-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+    color: white;
+    border-left: 4px solid #dc2626;
+}
+
+.alert-danger::before {
+    content: '\f071';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Анимации */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+}
+
+/* Анимация исчезновения */
+.fade-out {
+    animation: slideUp 0.3s ease-in forwards;
+}
+
+/* Hover эффекты */
+#notification:hover,
+#jq-notification:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    #notification,
+    #jq-notification {
+        top: 80px;
+        min-width: 280px;
+        max-width: 90vw;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #notification,
+    #jq-notification {
+        top: 70px;
+        min-width: 260px;
+        max-width: 95vw;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+    
+    .alert-success::before,
+    .alert-danger::before {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    }
+}
+
+/* Дополнительные стили для улучшения внешнего вида */
+.alert {
+    border: none;
+    margin-bottom: 0;
+}
+
+/* Стили для закрытия уведомления */
+.alert .btn-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert .btn-close:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Если нужно добавить кнопку закрытия */
+.alert-dismissible {
+    padding-right: 3rem;
+}
+
+/* Стили для множественных уведомлений */
+.notification-stack {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.notification-stack .alert {
+    pointer-events: auto;
+}
+
+/* Эффект пульсации для важных уведомлений */
+.alert-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Стили для темной темы */
+@media (prefers-color-scheme: dark) {
+    .alert-success {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(22, 163, 74, 0.95));
+    }
+    
+    .alert-danger {
+        background: linear-gradient(135deg, rgba(248, 113, 113, 0.95), rgba(239, 68, 68, 0.95));
     }
 }

@@ -99,7 +99,9 @@
                             </div>
                         </div>
                         <div class="product-footer">
-                            <a href="{% url 'cart:cart_add' product.slug %}" class="btn btn-primary btn-full">
+                            <a href="{% url 'cart:cart_add' %}" class="btn btn-primary btn-full-cart"
+                            data-product-id="{{ product.id }}">
+                                {% csrf_token %}
                                 <i class="fas fa-shopping-cart"></i> В корзину
                             </a>
                         </div>

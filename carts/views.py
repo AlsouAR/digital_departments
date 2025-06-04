@@ -1,5 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 
+from carts.utils import get_user_carts
 from goods.models import Products
 from carts.models import Cart
 
@@ -9,8 +12,9 @@ def cart_user(request):
 def cart_checkout(request):
     return render(request, 'carts/checkout.html')
 
-def cart_add(request, product_slug):
-    product = Products.objects.get(slug=product_slug)
+def cart_add(request):
+    product_id = request.POST.get("product_id")
+    product = Products.objects.get(id=product_id)
 
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user, product=product)
@@ -23,34 +27,55 @@ def cart_add(request, product_slug):
         else:
             Cart.objects.create(user=request.user, product=product, quantity=1)
     
-    return redirect(request.META['HTTP_REFERER'])
+    user_cart = get_user_carts(request)
+    cart_items_html = render_to_string(
+        "carts/includes/cart_items.html", {"carts": user_cart}, request=request)
 
-def cart_change(request, product_slug):
-    product = Products.objects.get(slug=product_slug)
+    response_data = {
+        "message": "Товар добавлен в корзину",
+        "cart_items_html": cart_items_html,
+    }
+    
+    return JsonResponse(response_data)
 
-    if request.user.is_authenticated:
-        cart = Cart.objects.filter(user=request.user, product=product).first()
-    else:
-        session_key = request.session.session_key
-        cart = Cart.objects.filter(session_key=session_key, product=product).first()
+def cart_change(request):
+    cart_id = request.POST.get("cart_id")
+    quantity = request.POST.get("quantity")
 
-    if cart:
-        action = request.GET.get('action', 'add')  # По умолчанию добавляем
-
-        if action == 'add':
-            cart.quantity += 1
-        elif action == 'subtract':
-            cart.quantity -= 1
-            if cart.quantity < 1:
-                cart.delete()  # Удаляем товар из корзины, если количество меньше 1
-                return redirect(request.META.get('HTTP_REFERER', 'carts:cart_user'))
-
-        cart.save()
-
-    return redirect(request.META.get('HTTP_REFERER', 'carts:cart_user'))
-
-def cart_remove(request, cart_id):
     cart = Cart.objects.get(id=cart_id)
+
+    cart.quantity = quantity
+    cart.save()
+    updated_quantity = cart.quantity
+
+    user_cart = get_user_carts(request)
+    cart_items_html = render_to_string(
+        "carts/includes/cart_items.html", {"carts": user_cart}, request=request)
+
+    response_data = {
+        "message": "Изменение в корзине",
+        "cart_items_html": cart_items_html,
+        "quantity": updated_quantity,
+    }
+    
+    return JsonResponse(response_data)
+
+
+def cart_remove(request):
+    cart_id = request.POST.get("cart_id")
+
+    cart = Cart.objects.get(id=cart_id)
+    quantity = cart.quantity
     cart.delete()
     
-    return redirect(request.META['HTTP_REFERER'])
+    user_cart = get_user_carts(request)
+    cart_items_html = render_to_string(
+        "carts/includes/cart_items.html", {"carts": user_cart}, request=request)
+
+    response_data = {
+        "message": "Товар удален",
+        "cart_items_html": cart_items_html,
+        "quantity_deleted": quantity,
+    }
+    
+    return JsonResponse(response_data)
