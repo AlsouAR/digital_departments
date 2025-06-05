@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-
+from orders.models import Order, OrderItem
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
 def login(request):
@@ -44,10 +44,14 @@ def profile(request):
             return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = ProfileForm(instance=request.user)
+    
+    user_orders = Order.objects.filter(user=request.user).order_by('-created_timestamp')
 
     context: dict[str, str] = {
         'title': 'Sweet Point - Профиль',
-        'form': form
+        'form': form,
+        'user': request.user,
+        'orders': user_orders
     }
 
     return render(request, 'users/profile.html', context)

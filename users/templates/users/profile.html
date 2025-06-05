@@ -137,6 +137,44 @@
                         <div class="profile-card">
                             <h2>Мои заказы</h2>
                             <p class="profile-card-description">Просмотрите историю ваших заказов и их статус</p>
+
+                            {% if orders %}
+                                <div class="orders-list">
+                                    {% for order in orders %}
+                                        <div class="order-card">
+                                            <div class="order-header">
+                                                <div class="order-info">
+                                                    <div class="order-id">
+                                                        <i class="fas fa-box"></i>
+                                                        <span>Заказ #ORD-{{ order.id }}</span>
+                                                    </div>
+                                                    <p class="order-date">Дата: {{ order.created_timestamp|date:"d.m.Y" }}</p>
+                                                </div>
+                                                <div class="order-status">
+                                                    <div class="order-total">
+                                                        {{ order.orderitem_set.total_price }} ₽
+                                                    </div>
+                                                    <span class="order-status-badge status-{{ order.status|lower|slugify }}">
+                                                        {{ order.status }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="order-footer">
+                                                <button class="btn btn-outline btn-sm">Подробнее</button>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p>У вас ещё нет заказов.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Мои заказы -->
+                    {% comment %} <div class="profile-tab-content active" id="orders-tab">
+                        <div class="profile-card">
+                            <h2>Мои заказы</h2>
+                            <p class="profile-card-description">Просмотрите историю ваших заказов и их статус</p>
                             
                             <div class="orders-list">
                                 <div class="order-card">
@@ -177,7 +215,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

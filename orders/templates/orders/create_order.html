@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="page-header">
+            <h1>Оформление заказа</h1>
+            <p>Заполните данные для доставки и выберите способ оплаты</p>
+        </div>
+
+        <div class="checkout-container">
+            <!-- Левая сторона - форма оформления -->
+            <div class="checkout-form-section">
+                {% comment %} <form class="checkout-form" method="post"> {% endcomment %}
+                <form action='{% url "orders:create_order" %}' method="post" id="create_order_form">
+                    {% csrf_token %}
+                    <!-- Контактные данные -->
+                    <div class="form-section">
+                        <h3 class="section-title">Контактные данные</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="id_first_name">Имя *</label>
+                                <input type="text" id="id_first_name"
+                                    value="{{ form.first_name.value|default:'' }}"
+                                    name="first_name" required>
+                                <div class='text-error'>
+                                    {% if form.first_name.errors %}
+                                    {{ form.first_name.errors }}{% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_last_name">Фамилия *</label>
+                                <input type="text" id="id_last_name"
+                                    value="{{ form.last_name.value|default:'' }}" 
+                                    name="last_name" required>
+                                <div class='text-error'>
+                                    {% if form.last_name.errors %}
+                                    {{ form.last_name.errors }}{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="id_phone">Телефон *</label>
+                                <input type="tel" id="id_phone" placeholder="+7 (123) 456-78-90" 
+                                    name='phone' pattern="\+?1?\d{9,15}$" 
+                                    value="{{ form.phone.value|default:'' }}" required>
+                                    <div class='text-error'>
+                                        {% if form.phone.errors %}
+                                        {{ form.phone.errors }}{% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Адрес доставки -->
+                    <div class="form-section">
+                        <h3 class="section-title">Адрес доставки</h3>
+                        <div class="form-group">
+                            <label for="id_address">Адрес *</label>
+                            <input type="text" id="id_address" name="address" placeholder="Улица, дом, квартира" required
+                                value="{{ form.address.value|default:'' }}" >
+                                <div class='text-error'>
+                                    {% if form.address.errors %}
+                                    {{ form.address.errors }}{% endif %}
+                                </div>
+                        </div>
+                    </div>
+
+                    <!-- Способ доставки -->
+                    <div class="form-section">
+                        <h3 class="section-title">Способ доставки</h3>
+                        <div class="delivery-options">
+                            <div class="delivery-option">
+                                <input type="radio" id="id_requires_delivery_1" name="requires_delivery" value="1"  
+                                {% if form.requires_delivery.value == '1' %}checked{% endif %}>
+                                <label for="id_requires_delivery_1" class="delivery-label">
+                                    <div class="delivery-info">
+                                        <h4>Курьерская доставка</h4>
+                                        {% comment %} <p>Доставка в течение 1-2 дней</p> {% endcomment %}
+                                        <span class="delivery-price">300 ₽</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="delivery-option">
+                                <input type="radio" id="id_requires_delivery_0" name="requires_delivery" value="0"
+                                {% if form.requires_delivery.value == '0' %}checked{% endif %}>
+                                <label for="id_requires_delivery_0" class="delivery-label">
+                                    <div class="delivery-info">
+                                        <h4>Самовывоз</h4>
+                                        {% comment %} <p>Готов к выдаче через 2-3 часа</p> {% endcomment %}
+                                        <span class="delivery-price">Бесплатно</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Способ оплаты -->
+                    <div class="form-section">
+                        <h3 class="section-title">Способ оплаты</h3>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <input type="radio" id="id_payment_on_get_0" name="payment_on_get" value="0" 
+                                {% if form.payment_on_get.value == '0' %}checked{% endif %}>
+                                <label for="id_payment_on_get_0" class="payment-label">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Банковской картой</span>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="id_payment_on_get_1" name="payment_on_get" value="1"
+                                {% if form.payment_on_get.value == '0' %}checked{% endif %}>
+                                <label for="id_payment_on_get_1" class="payment-label">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>Наличными при получении</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Комментарий к заказу -->
+                    <div class="form-section">
+                        <h3 class="section-title">Комментарий к заказу</h3>
+                        <div class="form-group">
+                            <textarea id="comment" name="comment" placeholder="Дополнительная информация для курьера или пожелания к заказу" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Правая сторона - информация о заказе -->
+            <div class="order-summary">
+                <div class="order-summary-card">
+                    <h3>Ваш заказ</h3>
+                    
+                    <!-- Товары в заказе -->
+                    <div class="order-items">
+                        {% user_carts request as carts %}
+                        {% for cart in carts %}
+                        <div class="order-item">
+                            <div class="order-item-image">
+                                {% if cart.product.image %}
+                                    <img src="{{ cart.product.image.url }}" alt="{{ cart.product.name }}">
+                                {% else %}
+                                    <img src="{% static "deps/images/Not found image.png" %}" alt="{{ cart.product.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="order-item-details">
+                                <h4>{{ cart.product.name }}</h4>
+                                <p>{{ cart.quantity }} шт. × {{ cart.product.display_new_price }} ₽</p>
+                            </div>
+                            <div class="order-item-total">
+                                {{ cart.products_price }} ₽
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Итоговые расчеты -->
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Товары ({{ carts.total_quantity }} шт.)</span>
+                            <span>{{ carts.total_price }} ₽</span>
+                        </div>
+                        {% comment %} <div class="total-row">
+                            <span>Доставка</span>
+                            <span class="delivery-cost">300 ₽</span>
+                        </div> {% endcomment %}
+                        <div class="total-row final-total">
+                            <span>Итого к оплате</span>
+                            <span class="final-price">{{ carts.total_price }} ₽</span>
+                            {% comment %} <span class="final-price">{{ carts.total_price|add:300 }} ₽</span> {% endcomment %}
+                        </div>
+                    </div>
+
+                    <!-- Кнопки действий -->
+                    <div class="checkout-actions">
+                        <button type="submit" class="btn btn-primary btn-full" form="create_order_form">
+                            <i class="fas fa-check"></i>
+                            Подтвердить заказ
+                        </button>
+                        <a href="{% url 'cart:cart_user' %}" class="btn btn-outline btn-full">
+                            <i class="fas fa-arrow-left"></i>
+                            Вернуться в корзину
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

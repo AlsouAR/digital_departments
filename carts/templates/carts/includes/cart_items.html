@@ -65,7 +65,7 @@
                             </div>
                             {% if carts %}
                                 {% comment %} <button class="btn btn-primary btn-full">Оформить заказ</button> {% endcomment %}
-                                <a href="{% url 'carts:cart_checkout' %}" class="btn btn-primary btn-full">Оформить заказ
+                                <a href="{% url 'orders:create_order' %}" class="btn btn-primary btn-full">Оформить заказ
                             {% endif %}
                             <a href="{% url 'goods:index' %}" class="btn btn-outline btn-full">
                                 <i class="fas fa-shopping-bag"></i> Продолжить покупки

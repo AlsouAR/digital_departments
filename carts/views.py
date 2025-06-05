@@ -9,9 +9,6 @@ from carts.models import Cart
 def cart_user(request):
     return render(request, 'carts/cart.html')
 
-def cart_checkout(request):
-    return render(request, 'carts/checkout.html')
-
 def cart_add(request):
     product_id = request.POST.get("product_id")
     product = Products.objects.get(id=product_id)
