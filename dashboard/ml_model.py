@@ -1,7 +1,8 @@
 # dashboard/ml_model.py
-from orders.models import OrderItem
 import pandas as pd
-from sklearn.linear_model import LinearRegression
+from sklearn.experimental import enable_hist_gradient_boosting
+from sklearn.ensemble import HistGradientBoostingRegressor
+from orders.models import OrderItem
 from collections import defaultdict
 
 
@@ -17,6 +18,10 @@ def get_dashboard_data():
             'price_recommendations': [],
             'forecast': {}
         }
+
+    df = pd.DataFrame(list(items.values()))
+    df['created_timestamp'] = pd.to_datetime(df['created_timestamp'])
+    df['month'] = df['created_timestamp'].dt.month
 
     # Подсчёт метрик
     total_orders = items.values('order').distinct().count()
@@ -35,15 +40,13 @@ def get_dashboard_data():
         category_sales[item.product.category.name] += item.quantity
     top_categories = sorted(category_sales.items(), key=lambda x: x[1], reverse=True)
 
-    # Прогноз спроса по категориям
-    df = pd.DataFrame(list(items.values()))
-    df['created_timestamp'] = pd.to_datetime(df['created_timestamp'])
-    df['month'] = df['created_timestamp'].dt.month
-
+    # Прогноз спроса
     def train_predict(data):
+        if data.empty:
+            return [0] * 12
         X = data[['month']]
         y = data['quantity']
-        model = LinearRegression()
+        model = HistGradientBoostingRegressor(random_state=42)
         model.fit(X, y)
         future_months = [[m] for m in range(1, 13)]
         return model.predict(future_months).astype(int).tolist()
