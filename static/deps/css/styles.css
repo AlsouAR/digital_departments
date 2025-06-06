@@ -2946,3 +2946,9 @@ select:focus {
         background: linear-gradient(135deg, rgba(248, 113, 113, 0.95), rgba(239, 68, 68, 0.95));
     }
 }
+.chart-canvas {
+    height: 300px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}

@@ -72,6 +72,10 @@
                                 <a href="{% url "user:profile" %}" class="dropdown-item">
                                     <i class="fas fa-user"></i> Мой профиль
                                 </a>
+                                <a href="{% url 'users:logout' %}" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Выйти</span>
+                                </a>
                             {% endif %}
                         </div>
                     </div>

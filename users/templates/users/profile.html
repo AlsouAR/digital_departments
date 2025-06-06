@@ -22,7 +22,7 @@
                             <span>Доставка и оплата</span>
                         </a>
                         {% if user.is_admin or user.is_staff %}
-                        <a href="dashboard.html" class="profile-menu-item">
+                        <a href="{% url "dashboards:dashboard" %}" class="profile-menu-item">
                             <i class="fas fa-chart-line"></i>
                             <span>Аналитика</span>
                         </a>
@@ -159,9 +159,9 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="order-footer">
+                                            {% comment %} <div class="order-footer">
                                                 <button class="btn btn-outline btn-sm">Подробнее</button>
-                                            </div>
+                                            </div> {% endcomment %}
                                         </div>
                                     {% endfor %}
                                 </div>

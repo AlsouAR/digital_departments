@@ -23,6 +23,10 @@ def cart_add(request):
                 cart.save()
         else:
             Cart.objects.create(user=request.user, product=product, quantity=1)
+    else:
+        # Для гостя — по session_key
+        session_key = request.session.session_key
+        cart = Cart.objects.get_or_create(session_key=session_key, product=product)
     
     user_cart = get_user_carts(request)
     cart_items_html = render_to_string(
