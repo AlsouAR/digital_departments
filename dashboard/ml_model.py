@@ -4,9 +4,16 @@ from sklearn.experimental import enable_hist_gradient_boosting
 from sklearn.ensemble import HistGradientBoostingRegressor
 from orders.models import OrderItem
 from collections import defaultdict
+from django.core.cache import cache
 
 
 def get_dashboard_data():
+    cache_key = "ml_model_output"
+    result = cache.get(cache_key)
+
+    if result is not None:
+        return result
+
     items = OrderItem.objects.all().select_related('product__category')
 
     if not items.exists():
@@ -79,7 +86,7 @@ def get_dashboard_data():
             'reason': '-15% — низкий спрос'
         })
 
-    return {
+    result = {
         'total_orders': total_orders,
         'total_revenue': round(total_revenue, 2),
         'total_products_sold': total_products_sold,
@@ -88,3 +95,6 @@ def get_dashboard_data():
         'price_recommendations': price_recommendations,
         'forecast': category_forecasts
     }
+    # сохраним результат на час
+    cache.set(cache_key, result, 60 * 60)
+    return result

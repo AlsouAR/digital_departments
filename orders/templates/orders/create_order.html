@@ -165,14 +165,14 @@
                             <span>Товары ({{ carts.total_quantity }} шт.)</span>
                             <span>{{ carts.total_price }} ₽</span>
                         </div>
-                        {% comment %} <div class="total-row">
+                        <div class="total-row">
                             <span>Доставка</span>
                             <span class="delivery-cost">300 ₽</span>
-                        </div> {% endcomment %}
+                        </div>
                         <div class="total-row final-total">
                             <span>Итого к оплате</span>
                             <span class="final-price">{{ carts.total_price }} ₽</span>
-                            {% comment %} <span class="final-price">{{ carts.total_price|add:300 }} ₽</span> {% endcomment %}
+                            <span class="final-price">{{ carts.total_price|add:300 }} ₽</span>
                         </div>
                     </div>
 

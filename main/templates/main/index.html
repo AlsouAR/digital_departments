@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load goods_tags %}
+{% load dashboard_tags %}
 
 <!-- Основной контент -->
 {% block content %}
@@ -31,38 +33,24 @@
                     <p>Выберите категорию и найдите то, что вам по вкусу</p>
                 </div>
                 <div class="categories-grid">
-                    <a href="{% url "goods:index" %}.html?category=desserts" class="category-card">
-                        <div class="category-image">
-                            <img src="{% static "deps/images/category-desserts.jpg" %}" alt="Десерты">
-                            <div class="category-overlay">
-                                <h3>Десерты</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="{% url "goods:index" %}?category=cakes" class="category-card">
-                        <div class="category-image">
-                            <img src="{% static "deps/images/category-cakes.jpg" %}" alt="Торты">
-                            <div class="category-overlay">
-                                <h3>Торты</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="{% url "goods:index" %}?category=pastry" class="category-card">
-                        <div class="category-image">
-                            <img src="{% static "deps/images/category-pastry.jpg" %}" alt="Выпечка">
-                            <div class="category-overlay">
-                                <h3>Выпечка</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="{% url "goods:index" %}?category=pies" class="category-card">
-                        <div class="category-image">
-                            <img src="{% static "deps/images/category-pies.jpg" %}" alt="Пироги">
-                            <div class="category-overlay">
-                                <h3>Пироги</h3>
-                            </div>
-                        </div>
-                    </a>
+                    {% tag_categories as categories %}
+                    {% for category in categories %}
+                        {% if category.name != "Весь ассортимент" %}
+                            <a href="{% url "goods:index_by_category" category.slug%}" class="category-card">
+                                <div class="category-image">
+                                    {% if category.image %}
+                                        <img src="{{ category.image.url }}" alt={{category.name}}>
+                                    {% else %}
+                                        <img src="{% static "deps/images/Not found image.png" %}" alt={{category.name}}>
+                                    {% endif %}
+                                    <div class="category-overlay">
+                                        <h3>{{category.name}}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
             </div>
         </section>
@@ -78,7 +66,96 @@
                     <a href="{% url "goods:index" %}" class="see-all">Все товары <i class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="products-grid">
-                    <div class="product-card">
+                    {% tag_dashboard as dashboard_data %}
+                    {% for product in dashboard_data.top_products %}
+                        <div class="product-card">
+                            <div class="product-image">
+                                {% if product.image_url %}
+                                    <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="{% static "deps/images/Not found image.png" %}" alt="{{ product.name }}">
+                                {% endif %}
+                                <div class="product-badges">
+                                    {% if product.discount %}
+                                        <span class="badge badge-discount">-{{ product.display_discount }}%</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>{{ product.rating }}</span>
+                                </div>
+                                <h3 class="product-title">{{ product.name }}</h3>
+                                <div class="product-price">
+                                    <span class="price">{{ product.display_new_price }} ₽</span>
+                                    {% if product.discount %}
+                                        <span class="old-price">{{ product.price }} ₽</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <a href="{% url 'cart:cart_add' %}" class="btn btn-primary btn-full-cart"
+                                data-product-id="{{ product.id }}">
+                                    {% csrf_token %}
+                                    <i class="fas fa-shopping-cart"></i> В корзину
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                    
+
+
+                    {% comment %} {% tag_products as products %}
+                    {% if dashboard_data.top_products %}
+                        {% for product_name, sales_count in dashboard_data.top_products %}
+                            {% for product in products %}
+                                {% if product.name == product_name %}
+
+
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            {% if product.image %}
+                                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            {% else %}
+                                                <img src="{% static "deps/images/Not found image.png" %}" alt="{{ product.name }}">
+                                            {% endif %}
+                                            <div class="product-badges">
+                                                {% if product.discount %}
+                                                    <span class="badge badge-discount">-{{ product.display_discount }}%</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-rating">
+                                                <i class="fas fa-star"></i>
+                                                <span> {{ product.rating }} </span>
+                                            </div>
+                                            <h3 class="product-title">{{ product.name }}</h3>
+                                            <div class="product-price">
+                                                <span class="price"> {{ product.display_new_price }} ₽</span>
+                                                {% if product.discount %}
+                                                    <span class="old-price"> {{ product.price }} ₽</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="product-footer">
+                                            <a href="{% url 'cart:cart_add' %}" class="btn btn-primary btn-full-cart"
+                                            data-product-id="{{ product.id }}">
+                                                {% csrf_token %}
+                                                <i class="fas fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %} 
+                </div> {% endcomment %}
+                    
+
+                    {% comment %} <div class="product-card">
                         <div class="product-image">
                             <img src="{% static "deps/images/product-cake.jpg" %}" alt="Торт Клубничный">
                             <div class="product-badges"></div>
@@ -167,7 +244,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
                 <div class="mobile-see-all">
                     <a href="{% url "goods:index" %}" class="btn btn-outline btn-full">Смотреть все товары</a>
                 </div>
