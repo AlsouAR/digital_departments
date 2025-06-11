@@ -80,7 +80,7 @@
                                     <div class="delivery-info">
                                         <h4>Курьерская доставка</h4>
                                         {% comment %} <p>Доставка в течение 1-2 дней</p> {% endcomment %}
-                                        <span class="delivery-price">300 ₽</span>
+                                        {% comment %} <span class="delivery-price">300 ₽</span> {% endcomment %}
                                     </div>
                                 </label>
                             </div>
@@ -122,12 +122,12 @@
                     </div>
 
                     <!-- Комментарий к заказу -->
-                    <div class="form-section">
+                    {% comment %} <div class="form-section">
                         <h3 class="section-title">Комментарий к заказу</h3>
                         <div class="form-group">
                             <textarea id="comment" name="comment" placeholder="Дополнительная информация для курьера или пожелания к заказу" rows="3"></textarea>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </form>
             </div>
 
@@ -165,14 +165,14 @@
                             <span>Товары ({{ carts.total_quantity }} шт.)</span>
                             <span>{{ carts.total_price }} ₽</span>
                         </div>
-                        <div class="total-row">
+                        {% comment %} <div class="total-row"> 
                             <span>Доставка</span>
                             <span class="delivery-cost">300 ₽</span>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="total-row final-total">
                             <span>Итого к оплате</span>
                             <span class="final-price">{{ carts.total_price }} ₽</span>
-                            <span class="final-price">{{ carts.total_price|add:300 }} ₽</span>
+                            {% comment %} <span class="final-price">{{ carts.total_price|add:300 }} ₽</span> {% endcomment %}
                         </div>
                     </div>
 

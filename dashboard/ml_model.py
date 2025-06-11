@@ -5,6 +5,7 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 from orders.models import OrderItem
 from collections import defaultdict
 from django.core.cache import cache
+from datetime import datetime
 
 
 def get_dashboard_data():
@@ -48,14 +49,36 @@ def get_dashboard_data():
     top_categories = sorted(category_sales.items(), key=lambda x: x[1], reverse=True)
 
     # Прогноз спроса
+    # def train_predict(data):
+    #     if data.empty:
+    #         return [0] * 12
+    #     X = data[['month']]
+    #     y = data['quantity']
+    #     model = HistGradientBoostingRegressor(random_state=42)
+    #     model.fit(X, y)
+    #     future_months = [[m] for m in range(1, 13)]
+    #     return model.predict(future_months).astype(int).tolist()
+
+
     def train_predict(data):
         if data.empty:
             return [0] * 12
+
         X = data[['month']]
         y = data['quantity']
+        
         model = HistGradientBoostingRegressor(random_state=42)
         model.fit(X, y)
-        future_months = [[m] for m in range(1, 13)]
+        
+        # Получаем текущий месяц (например, июнь = 6)
+        current_month = datetime.now().month
+        
+        # Создаем список следующих 12 месяцев
+        future_months = []
+        for i in range(12):
+            month_num = (current_month + i - 1) % 12 + 1
+            future_months.append([month_num])
+
         return model.predict(future_months).astype(int).tolist()
 
     forecast_by_category = {}

@@ -9,12 +9,12 @@
                 <h1>Аналитический дашборд</h1>
                 <p>Анализ продаж и рекомендации для оптимизации бизнеса</p>
             </div>
+
             {% comment %} <div class="dashboard-actions">
                 <div class="date-filter">
                     <select id="period-select">
                         <option value="week">За неделю</option>
                         <option value="month" selected>За месяц</option>
-                        <option value="quarter">За квартал</option>
                         <option value="year">За год</option>
                     </select>
                 </div>
@@ -50,35 +50,7 @@
             </div>
         </div>
 
-        {% comment %} <!-- Популярные товары -->
-        <div class="dashboard-card">
-            <div class="dashboard-card-header">
-                <h2>Популярные товары</h2>
-            </div>
-            <div class="dashboard-card-content">
-                <ul class="popular-products-list">
-                    {% for name, quantity in top_products %}
-                        <li>{{ name }} — {{ quantity }} шт.</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <!-- Популярные категории -->
-        <div class="dashboard-card">
-            <div class="dashboard-card-header">
-                <h2>Популярные категории</h2>
-            </div>
-            <div class="dashboard-card-content">
-                <ul class="popular-categories-list">
-                    {% for name, quantity in top_categories %}
-                        <li>{{ name }} — {{ quantity }} шт.</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div> {% endcomment %}
-
-        <!-- График популярных товаров -->
+        <!-- Популярные товары -->
         <div class="dashboard-card">
             <div class="dashboard-card-header">
                 <h2>Топ 4 популярных товаров</h2>
@@ -88,10 +60,10 @@
             </div>
         </div>
 
-        <!-- График популярных категорий -->
+        <!-- Популярные категории -->
         <div class="dashboard-card">
             <div class="dashboard-card-header">
-                <h2>Популярность категорий</h2>
+                <h2>Популярные категории</h2>
             </div>
             <div class="dashboard-card-content">
                 <canvas id="categoriesChart" class="chart-canvas"></canvas>
@@ -108,14 +80,13 @@
                     <div class="recommendations-list">
                         {% for rec in recommendations %}
                             <div class="recommendation-item">
-                                <div class="recommendation-icon {% if 'Повысьте' in rec.action %}increase{% else %}decrease{% endif %}">
-                                    <i class="fas {% if 'Повысьте' in rec.action %}fa-arrow-up{% else %}fa-arrow-down{% endif %}"></i>
+                                <div class="recommendation-icon {% if 'Повысьте цену' in rec.action %}increase{% else %}decrease{% endif %}">
+                                    <i class="fas {% if 'Повысьте цену' in rec.action %}fa-arrow-up{% else %}fa-arrow-down{% endif %}"></i>
                                 </div>
                                 <div class="recommendation-content">
                                     <h3>{{ rec.action }}</h3>
                                     <p>Товар "{{ rec.name }}" — {{ rec.reason }}</p>
                                 </div>
-                                {% comment %} <button class="btn btn-sm btn-outline">Применить</button> {% endcomment %}
                             </div>
                         {% endfor %}
                     </div>
@@ -124,121 +95,118 @@
                 {% endif %}
             </div>
         </div>
-        
-        <!-- График прогнозирования спроса -->
+
+        <!-- Прогноз спроса -->
         <div class="dashboard-card">
             <div class="dashboard-card-header">
-                <h2>Прогноз спроса</h2>
+                <h2>Прогноз спроса на 12 месяцев</h2>
             </div>
             <div class="dashboard-card-content">
-                <canvas id="demandForecastChart"></canvas>
+                <canvas id="demandForecastChart" class="chart-canvas"></canvas>
             </div>
         </div>
+    </div>
+</main>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
-        <script>
-            const popularProductsCtx = document.getElementById('popularProductsChart').getContext('2d');
-            new Chart(popularProductsCtx, {
-                type: 'bar',
-                data: {
-                    labels: [{% for name, quantity in top_products %}"{{ name }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
-                    datasets: [{
-                        label: 'Количество продаж',
-                        data: [{% for name, quantity in top_products %}{{ quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                        backgroundColor: [
-                            'rgba(249, 168, 212, 0.8)',   // Розовый
-                            'rgba(254, 243, 199, 0.8)',   // Желтый
-                            'rgba(165, 243, 252, 0.8)',   // Голубой
-                            'rgba(179, 134, 210, 0.8)',   // Фиолетовый
-                            'rgba(144, 238, 144, 0.8)',   // Светло-зелёный
-                        ],
-                        borderColor: [
-                            'rgba(249, 168, 212, 1)',
-                            'rgba(254, 243, 199, 1)',
-                            'rgba(165, 243, 252, 1)',
-                            'rgba(179, 134, 210, 1)',
-                            'rgba(144, 238, 144, 1)',
-                        ],
-                        borderWidth: 1
-                    }]
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
+
+<!-- JavaScript для графиков -->
+<script>
+    const forecastData = {{ forecast|safe }};
+    const forecastLabels = {{ forecast_labels|safe }};
+
+    // Цвета для графиков
+    const colors = [
+        ['rgba(249, 168, 212, 1)', 'rgba(249, 168, 212, 0.1)'],
+        ['rgba(254, 243, 199, 1)', 'rgba(254, 243, 199, 0.1)'],
+        ['rgba(165, 243, 252, 1)', 'rgba(165, 243, 252, 0.1)'],
+        ['rgba(179, 134, 210, 1)', 'rgba(179, 134, 210, 0.1)'],
+    ];
+
+    // График популярных товаров (bar)
+    const popularProductsCtx = document.getElementById('popularProductsChart').getContext('2d');
+    new Chart(popularProductsCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for name, quantity in top_products %}"{{ name }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                label: 'Количество проданных единиц',
+                data: [{% for name, quantity in top_products %}{{ quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: [
+                    'rgba(249, 168, 212, 0.8)',
+                    'rgba(254, 243, 199, 0.8)',
+                    'rgba(165, 243, 252, 0.8)',
+                    'rgba(179, 134, 210, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(249, 168, 212, 1)',
+                    'rgba(254, 243, 199, 1)',
+                    'rgba(165, 243, 252, 1)',
+                    'rgba(179, 134, 210, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // График популярных категорий (pie)
+    const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
+    new Chart(categoriesCtx, {
+        type: 'pie',
+        data: {
+            labels: [{% for name, quantity in top_categories %}"{{ name }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                label: 'Продажи по категориям',
+                data: [{% for name, quantity in top_categories %}{{ quantity }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: [
+                    'rgba(249, 168, 212, 0.8)',
+                    'rgba(254, 243, 199, 0.8)',
+                    'rgba(165, 243, 252, 0.8)',
+                    'rgba(179, 134, 210, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'right'
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
                 }
-            });
+            }
+        }
+    });
 
-            // Диаграмма популярных категорий
-            const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
-            new Chart(categoriesCtx, {
-                type: 'pie',
-                data: {
-                    labels: [{% for name, quantity in top_categories %}"{{ name }}",{% endfor %}],
-                    datasets: [{
-                        label: 'Продажи по категориям',
-                        data: [ {% for name, quantity in top_categories %} {{ quantity }},{% endfor %} ],
-                        backgroundColor: [
-                            'rgba(249, 168, 212, 0.8)',
-                            'rgba(254, 243, 199, 0.8)',
-                            'rgba(165, 243, 252, 0.8)',
-                            'rgba(179, 134, 210, 0.8)'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'right'
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false
-                        }
-                    }
-                }
-            });
+    // Прогноз спроса (line)
+    const demandForecastCtx = document.getElementById('demandForecastChart').getContext('2d');
 
-            // Прогноз спроса
-            const demandForecastCtx = document.getElementById('demandForecastChart').getContext('2d');
-            const forecastData = {{ forecast|safe }};
+    const datasets = Object.keys(forecastData).map((category, i) => ({
+        label: category,
+        data: forecastData[category],
+        borderColor: colors[i][0],
+        backgroundColor: colors[i][1],
+        tension: 0.4,
+        fill: false
+    }));
 
-            const datasets = Object.keys(forecastData).map((category, i) => {
-                const colors = [
-                    'rgba(249, 168, 212, 1)',   // Розовый
-                    'rgba(254, 243, 199, 1)',   // Жёлтый
-                    'rgba(165, 243, 252, 1)',   // Голубой
-                    'rgba(179, 134, 210, 1)',   // Фиолетовый
-                    'rgba(144, 238, 144, 1)',   // Зелёный
-                ];
-
-                return {
-                    label: category,
-                    data: forecastData[category],
-                    borderColor: colors[i % colors.length],
-                    backgroundColor: colors[i % colors.length],
-                    pointBackgroundColor: colors[i % colors.length],
-                    pointBorderColor: colors[i % colors.length],
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: colors[i % colors.length],
-                    pointRadius: 4,
-                    pointHoverRadius: 6,
-                    tension: 0.4,
-                    fill: false, // чтобы не заливать область под линией
-                    borderWidth: 2,
-                    hoverOffset: 10
-                };
-            });
-
-            new Chart(demandForecastCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-                    datasets: datasets
-                },
-                options: {
+    new Chart(demandForecastCtx, {
+        type: 'line',
+        data: {
+            labels: forecastLabels,
+            datasets: datasets
+        },
+        options: {
                     responsive: true,
                     interaction: {
                         mode: 'index',
@@ -281,9 +249,7 @@
                         }
                     }
                 }
-            });
-        </script>
-    </div>
-</main>
+    });
+</script>
 
 {% endblock %}

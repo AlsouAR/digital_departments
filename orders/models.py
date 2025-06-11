@@ -40,7 +40,7 @@ class OrderItem(models.Model):
     name = models.CharField(max_length=150, verbose_name="Название")
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена")
     quantity = models.PositiveIntegerField(default=0, verbose_name="Количество")
-    created_timestamp = models.DateTimeField(null=True, blank=True, verbose_name="Дата продажи")
+    created_timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name="Дата продажи")
 
 
     class Meta:
@@ -55,4 +55,4 @@ class OrderItem(models.Model):
         return self.product.display_new_price()*self.quantity
 
     def __str__(self):
-        return f"Товар {self.name} | Заказ № {self.order.pk}"
+        return f"Товар {self.name} | Заказ № {self.order.pk} | Продано {self.created_timestamp} "

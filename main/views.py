@@ -37,3 +37,12 @@ def delivery(request):
     }
 
     return render(request, 'main/delivery.html', context)
+
+def promotions(request):
+    context: dict[str, str] = {
+        'title': 'Акции',
+        'content': 'Sweet Point - Акции'
+    }
+
+    return render(request, 'main/promotions.html', context)
+

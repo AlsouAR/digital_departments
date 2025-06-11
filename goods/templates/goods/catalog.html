@@ -99,11 +99,17 @@
                             </div>
                         </div>
                         <div class="product-footer">
-                            <a href="{% url 'cart:cart_add' %}" class="btn btn-primary btn-full-cart"
-                            data-product-id="{{ product.id }}">
-                                {% csrf_token %}
-                                <i class="fas fa-shopping-cart"></i> В корзину
-                            </a>
+                            {% if not user.is_authenticated %}
+                                <a href="{% url "user:login" %}" class="btn btn-primary btn-full">
+                                    <i class="fas fa-shopping-cart"></i> В корзину
+                                </a>
+                            {% else %}
+                                <a href="{% url 'cart:cart_add' %}" class="btn btn-primary btn-full-cart"
+                                data-product-id="{{ product.id }}">
+                                    {% csrf_token %}
+                                    <i class="fas fa-shopping-cart"></i> В корзину
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

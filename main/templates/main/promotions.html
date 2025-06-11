@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Основной контент -->
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Акции и специальные предложения</h1>
+                <p>Не пропустите наши выгодные предложения и скидки</p>
+            </div>
+
+            <div class="promotions-list">
+                <div class="promotion-large-card">
+                    <div class="promotion-image">
+                        <img src="images/promo-cakes.jpg" alt="Скидка на торты">
+                        <span class="badge badge-discount">-20%</span>
+                    </div>
+                    <div class="promotion-content">
+                        <h2>Скидка 20% на все торты</h2>
+                        <p>По выходным скидка 20% на все торты при заказе онлайн</p>
+                        <div class="promotion-footer">
+                            <p class="promotion-date">Действует до: 31.05.2023</p>
+                            <a href="catalog.html?category=cakes" class="btn btn-primary">Перейти в каталог</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion-large-card">
+                    <div class="promotion-image">
+                        <img src="images/promo-gift.jpg" alt="Подарок при заказе">
+                        <span class="badge badge-accent">Подарок</span>
+                    </div>
+                    <div class="promotion-content">
+                        <h2>Подарок при заказе от 2000 рублей</h2>
+                        <p>Получите набор из 4 макарунов в подарок при заказе от 2000 рублей</p>
+                        <div class="promotion-footer">
+                            <p class="promotion-date">Действует до: 15.06.2023</p>
+                            <a href="catalog.html" class="btn btn-primary">Перейти в каталог</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion-large-card">
+                    <div class="promotion-image">
+                        <img src="images/promo-first-order.jpg" alt="Скидка на первый заказ">
+                        <span class="badge badge-discount">-15%</span>
+                    </div>
+                    <div class="promotion-content">
+                        <h2>Скидка 15% на первый заказ</h2>
+                        <p>Зарегистрируйтесь на сайте и получите скидку 15% на первый заказ</p>
+                        <div class="promotion-footer">
+                            <p class="promotion-date">Действует: Бессрочно</p>
+                            <a href="login.html" class="btn btn-primary">Зарегистрироваться</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promotion-large-card">
+                    <div class="promotion-image">
+                        <img src="images/promo-happy-hours.jpg" alt="Счастливые часы">
+                        <span class="badge badge-discount">-10%</span>
+                    </div>
+                    <div class="promotion-content">
+                        <h2>Счастливые часы</h2>
+                        <p>Скидка 10% на всю выпечку с 17:00 до 19:00 по будням</p>
+                        <div class="promotion-footer">
+                            <p class="promotion-date">Действует: Бессрочно</p>
+                            <a href="catalog.html?category=pastry" class="btn btn-primary">Перейти в каталог</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

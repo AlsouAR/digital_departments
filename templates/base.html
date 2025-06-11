@@ -34,7 +34,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="promotions.html" class="nav-link">Акции</a>
+                            {% comment %} <a href="promotions.html" class="nav-link">Акции</a> {% endcomment %}
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link">Информация <i class="fas fa-chevron-down"></i></a>
@@ -48,12 +48,18 @@
                 </nav>
                 
                 <div class="header-actions">
-                    
-                    <a href="{% url 'carts:cart_user' %}" class="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        {% user_carts request as carts %}
-                        <span class="cart-count" id="cart-count">{{ carts.total_quantity }}</span>
-                    </a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url "user:login" %}" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </a>
+                    {% else  %}
+                        <a href="{% url 'carts:cart_user' %}" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            {% user_carts request as carts %}
+                            <span class="cart-count" id="cart-count">{{ carts.total_quantity }}</span>
+                        </a>
+                    {% endif %}   
                     <div class="user-menu dropdown">
                         <button class="user-button">
                             <i class="fas fa-user"></i>
@@ -101,7 +107,7 @@
                     </ul>
                 </li>
                 <li class="mobile-nav-item">
-                    <a href="promotions.html" class="mobile-nav-link">Акции</a>
+                    {% comment %} <a href="promotions.html" class="mobile-nav-link">Акции</a> {% endcomment %}
                 </li>
                 <li class="mobile-nav-item">
                     <a href="about.html" class="mobile-nav-link">О нас</a>
@@ -144,14 +150,14 @@
                     <h3 class="footer-title">Навигация</h3>
                     <div class="footer-links">
                         <a href="{% url "goods:index" %}" class="footer-link">Каталог</a>
-                        <a href="promotions.html" class="footer-link">Акции</a>
+                        {% comment %} <a href="promotions.html" class="footer-link">Акции</a> {% endcomment %}
                         <a href="{% url "main:about" %}" class="footer-link">О нас</a>
                         <a href="{% url "main:contacts" %}" class="footer-link">Контакты</a>
                         <a href="{% url "main:delivery" %}" class="footer-link">Доставка и оплата</a>
                         {% if not user.is_athentificated %}
-                        <a href="login.html" class="footer-link">Войти</a>
+                        <a href="{% url 'user:login' %}" class="footer-link">Войти</a>
                         {% else %}
-                        <a href="profile.html" class="footer-link">Мой профиль</a>
+                        <a href="{% url 'user:profile' %}l" class="footer-link">Мой профиль</a>
                         {% endif %}
                     </div>
                 </div>
@@ -168,13 +174,13 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>г. Москва, ул. Кондитерская, д. 123</span>
+                            <span>г. Казань, Кремлёвская улица, 35</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2023 Sweet Point. Все права защищены.</p>
+                <p>© 2025 Sweet Point.</p>
             </div>
         </div>
     </footer>
